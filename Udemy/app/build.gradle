@@ -1,12 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.learning.myudemy'
     compileSdk 32
 
+    buildFeatures{
+        dataBinding = true
+    }
     defaultConfig {
         applicationId "com.learning.myudemy"
         minSdk 31
@@ -43,4 +48,13 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+
+    // dagger
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+}
+
+kapt{
+    correctErrorTypes true
 }

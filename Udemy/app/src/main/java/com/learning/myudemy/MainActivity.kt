@@ -2,8 +2,11 @@ package com.learning.myudemy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.learning.myudemy.base.BaseActivityBinding
 import com.learning.myudemy.ui.main.MainFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
