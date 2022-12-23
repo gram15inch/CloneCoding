@@ -4,31 +4,32 @@
 
     <item
         android:id="@id/recommendationFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_star_selector"
         android:enabled="true"
-        android:title="추천"/>
+        android:title="추천"
+        />
 
     <item
         android:id="@id/searchFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_search_selector"
         android:enabled="true"
         android:title="검색" />
 
     <item
         android:id="@id/myLearningFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_play_selector"
         android:enabled="true"
         android:title="내 학습"/>
 
     <item
         android:id="@id/wishListFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_heart_selector"
         android:enabled="true"
         android:title="Wishlist"/>
 
     <item
         android:id="@id/accountFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_profile_selector"
         android:enabled="true"
         android:title="계정"/>
 
