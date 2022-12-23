@@ -5,10 +5,7 @@
 
     <data>
         <variable
-            name="nameText"
-            type="String" />
-        <variable
-            name="navController"
+            name="mainNavController"
             type="androidx.navigation.NavController" />
     </data>
 
@@ -39,6 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/main_menu"
+            app:navController="@{mainNavController}"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
