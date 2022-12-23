@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="testName"
+            name="testName1"
+            type="String" />
+
+        <variable
+            name="testName2"
             type="String" />
     </data>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="true"
@@ -22,27 +26,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/prototype_text"
+            <ImageView
+                android:id="@+id/imgTest"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:text="RecommendationFragment"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bn_banner1" />
 
-            <TextView
-                style="@style/prototype_text"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:text="@{testName}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+            <include
+                layout="@layout/layout_recommend_intro"/>
+
+            <include
+                layout="@layout/layout_recommend_lecture"
+                app:includeString="@{testName1}" />
+
+            <include
+                layout="@layout/layout_recommend_lecture"
+                app:includeString="@{testName2}" />
+
+
         </LinearLayout>
 
     </ScrollView>
