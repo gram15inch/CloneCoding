@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:fadeScrollbars="true"
         android:overScrollMode="never"
-        tools:context=".ui.recommendation.RecommendationFragment">
+        tools:context=".presentation.recommendation.RecommendationFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

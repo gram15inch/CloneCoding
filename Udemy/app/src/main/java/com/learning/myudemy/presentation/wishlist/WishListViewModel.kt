@@ -1,4 +1,4 @@
-package com.learning.myudemy.ui.wishlist
+package com.learning.myudemy.presentation.wishlist
 
 import androidx.lifecycle.ViewModel
 

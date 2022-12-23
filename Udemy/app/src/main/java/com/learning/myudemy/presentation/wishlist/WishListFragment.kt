@@ -1,4 +1,4 @@
-package com.learning.myudemy.ui.mylearning
+package com.learning.myudemy.presentation.wishlist
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.learning.myudemy.R
 
-class MyLearningFragment : Fragment() {
+class WishListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MyLearningFragment()
+        fun newInstance() = WishListFragment()
     }
 
-    private lateinit var viewModel: MyLearningViewModel
+    private lateinit var viewModel: WishListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_my_learning, container, false)
+        return inflater.inflate(R.layout.fragment_wish_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyLearningViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(WishListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

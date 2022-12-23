@@ -1,4 +1,4 @@
-package com.learning.myudemy.ui.recommendation
+package com.learning.myudemy.presentation.recommendation
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
