@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.recommendation.RecommendationFragment">
 
-    <TextView
+<layout>
+
+    <data>
+        <variable
+            name="testName"
+            type="String" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="RecommendationFragment"
-        style="@style/prototype_text"/>
+        android:fadeScrollbars="true"
+        android:overScrollMode="never"
+        tools:context=".ui.recommendation.RecommendationFragment">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/prototype_text"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:text="RecommendationFragment"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                style="@style/prototype_text"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:text="@{testName}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

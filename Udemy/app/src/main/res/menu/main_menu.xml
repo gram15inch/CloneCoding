@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@id/recommendationFragment"
@@ -11,7 +12,7 @@
         android:id="@id/searchFragment"
         android:icon="@mipmap/ic_launcher"
         android:enabled="true"
-        android:title="검색"/>
+        android:title="검색" />
 
     <item
         android:id="@id/myLearningFragment"
@@ -30,5 +31,6 @@
         android:icon="@mipmap/ic_launcher"
         android:enabled="true"
         android:title="계정"/>
+
 
 </menu>
