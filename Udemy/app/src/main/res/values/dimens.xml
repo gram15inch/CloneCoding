@@ -3,5 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="recommend_section_margin">18dp</dimen>
+    <dimen name="recommend_lecture_holder_margin_bottom">4dp</dimen>
 
 </resources>

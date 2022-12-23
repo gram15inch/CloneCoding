@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="testName1"
-            type="String" />
-
-        <variable
-            name="testName2"
-            type="String" />
+        <import type="java.util.List" />
+        <import type="com.learning.myudemy.domain.Lecture" />
+        <variable name="webList" type="List&lt;Lecture>" />
+        <variable name="reactList" type="List&lt;Lecture>" />
+        <variable name="pythonList" type="List&lt;Lecture>" />
+        <variable name="webTitle" type="String" />
+        <variable name="reactTitle" type="String" />
+        <variable name="pythonTitle" type="String" />
     </data>
 
     <ScrollView
@@ -31,20 +32,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bn_banner1" />
-
-            <include
-                layout="@layout/layout_recommend_intro"/>
-
-            <include
-                layout="@layout/layout_recommend_lecture"
-                app:includeString="@{testName1}" />
+                android:src="@drawable/bn_banner_main" />
+            <include layout="@layout/layout_recommend_intro" />
 
             <include
                 layout="@layout/layout_recommend_lecture"
-                app:includeString="@{testName2}" />
+                android:background="@color/grey"
+                app:lectureTitle="@{webTitle}"
+                app:webList="@{webList}" />
+            <include
+                layout="@layout/layout_banner_info"/>
+            <include
+                layout="@layout/layout_recommend_lecture"
+                app:lectureTitle="@{reactTitle}"
+                app:webList="@{reactList}" />
 
-
+            <include
+                layout="@layout/layout_recommend_lecture"
+                app:lectureTitle="@{pythonTitle}"
+                app:webList="@{pythonList}" />
         </LinearLayout>
 
     </ScrollView>
