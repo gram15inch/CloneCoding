@@ -6,7 +6,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_margin="@dimen/recommend_section_margin"
+        android:layout_marginStart="@dimen/recommend_section_margin"
+        android:layout_marginBottom="@dimen/recommend_section_margin"
+        android:layout_marginEnd="@dimen/recommend_section_margin"
         android:background="@drawable/sp_round_outline">
 
 

@@ -9,14 +9,14 @@
             android:id="@+id/recommend_intro_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/text_intro_main"
+            style="@style/text_intro_main"
             android:text="내게 딱 맞는 강의"
             />
         <TextView
             android:id="@+id/recommend_intro_sub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/text_intro_sub"
+            style="@style/text_intro_sub"
             android:text="현재(와 미래)를 위한 스킬"/>
     </LinearLayout>
 </layout>

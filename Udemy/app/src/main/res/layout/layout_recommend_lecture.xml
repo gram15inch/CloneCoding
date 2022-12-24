@@ -12,23 +12,26 @@
             name="lectureTitle"
             type="String" />
     </data>
-    <LinearLayout
+    <merge
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/recommend_lecture_margin"
         android:orientation="vertical">
         <TextView
             android:id="@+id/recommend_lecture_title"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:layout_marginStart="@dimen/recommend_section_margin"
+            android:layout_marginBottom="@dimen/recommend_lecture_holder_section_title_margin"
             android:text="@{lectureTitle}" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recommend_lecture_contents_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/recommend_section_margin"
+            android:layout_marginBottom="@dimen/recommend_section_margin"
             app:lectureList="@{webList}" />
-    </LinearLayout>
+    </merge>
 </layout>

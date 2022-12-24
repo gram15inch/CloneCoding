@@ -33,18 +33,17 @@ class RecommendationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_recommendation, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.webList = viewModel.webLectures
         binding.reactList = viewModel.reactLectures
         binding.pythonList = viewModel.pythonLectures
         binding.webTitle="웹 관련강의"
         binding.reactTitle="리엑트 관련강의"
         binding.pythonTitle="파이썬 관련강의"
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        binding.imgTest
     }
 
 }
