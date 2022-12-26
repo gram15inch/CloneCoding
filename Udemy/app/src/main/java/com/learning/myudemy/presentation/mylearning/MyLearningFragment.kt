@@ -6,27 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.learning.myudemy.R
+import com.learning.myudemy.databinding.FragmentMyLearningBinding
+import com.learning.myudemy.presentation.base.LifecycleFragment
 
-class MyLearningFragment : Fragment() {
+class MyLearningFragment : LifecycleFragment() {
 
-    companion object {
-        fun newInstance() = MyLearningFragment()
-    }
-
-    private lateinit var viewModel: MyLearningViewModel
-
+    lateinit var binding : FragmentMyLearningBinding
+    private val viewModel: MyLearningViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_my_learning, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_learning, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyLearningViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

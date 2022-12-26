@@ -1,5 +1,6 @@
 package com.learning.myudemy.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,11 +32,9 @@ class LectureAdapter(private val onItemClicked: (Lecture) -> Unit) :
             }
         }
 
-        val moneyformat = NumberFormat.getCurrencyInstance(Locale.getDefault())
-
-
+        @SuppressLint("ConstantLocale")
+        val moneyFormat: NumberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
     }
-
 
     class LectureHolder(var binding:HolderLectureBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -43,7 +42,7 @@ class LectureAdapter(private val onItemClicked: (Lecture) -> Unit) :
             binding.apply {
                 lectureImage.setImageResource(lecture.lectureThumbnail)
                 lectureName.text = lecture.lectureName
-                lecturePrice.text = "${moneyformat.format(lecture.lecturePrice)}"
+                lecturePrice.text = moneyFormat.format(lecture.lecturePrice)
                 lectureInstructor.text = lecture.Instructor
             }
         }

@@ -10,10 +10,6 @@ import com.learning.myudemy.R
 
 class AccountFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = AccountFragment()
-    }
-
     private lateinit var viewModel: AccountViewModel
 
     override fun onCreateView(
