@@ -7,8 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.learning.myudemy.R
+import com.learning.myudemy.presentation.base.LifecycleFragment
 
-class SearchFragment : Fragment() {
+class SearchFragment : LifecycleFragment() {
 
     companion object {
         fun newInstance() = SearchFragment()

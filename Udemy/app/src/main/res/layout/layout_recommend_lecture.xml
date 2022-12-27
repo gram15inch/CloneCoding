@@ -23,15 +23,15 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginStart="@dimen/recommend_section_margin"
+            android:layout_marginStart="@dimen/section_start_margin"
             android:layout_marginBottom="@dimen/recommend_lecture_holder_section_title_margin"
             android:text="@{lectureTitle}" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recommend_lecture_contents_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/recommend_section_margin"
-            android:layout_marginBottom="@dimen/recommend_section_margin"
+            android:layout_marginStart="@dimen/section_start_margin"
+            android:layout_marginBottom="@dimen/section_start_margin"
             app:lectureList="@{webList}" />
     </merge>
 </layout>

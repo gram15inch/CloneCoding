@@ -16,6 +16,7 @@ import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentRecommendationBinding
 import com.learning.myudemy.domain.Lecture
 import com.learning.myudemy.presentation.adapter.LectureAdapter
+import com.learning.myudemy.presentation.base.LifecycleFragment
 import timber.log.Timber
 
 @BindingAdapter("lectureList")
@@ -26,7 +27,7 @@ fun bindRecyclerView(view: RecyclerView,list:List<Lecture>){
     view.layoutManager = LinearLayoutManager(view.rootView.context,LinearLayoutManager.HORIZONTAL,false)
 }
 
-class RecommendationFragment : Fragment() {
+class RecommendationFragment : LifecycleFragment() {
 
     lateinit var binding : FragmentRecommendationBinding
     private val viewModel: RecommendationViewModel by viewModels()

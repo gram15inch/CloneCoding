@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.ActivityMainBinding
+import com.learning.myudemy.presentation.base.LifecycleActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -28,7 +29,7 @@ fun bindToolbar(view: Toolbar, appBarConfiguration : AppBarConfiguration, navCon
 }
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : LifecycleActivity() {
     lateinit var binding : ActivityMainBinding
     lateinit var navHostFragment : NavHostFragment
     lateinit var navController: NavController
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        //navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
+       //navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
         navHostFragment = binding.mainNavHostFragment.getFragment()
         navController = navHostFragment.findNavController()
         //appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -44,41 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainAppBarConfiguration = appBarConfiguration
         binding.mainNavController = navController
-        Timber.tag("lifecycle").d("onCreate")
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        Timber.tag("lifecycle").d("onRestart")
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Timber.tag("lifecycle").d("onStart")
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Timber.tag("lifecycle").d("onResume")
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Timber.tag("lifecycle").d("onPause")
-
-    }
-    override fun onStop() {
-        super.onStop()
-        Timber.tag("lifecycle").d("onStop")
-
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.tag("lifecycle").d("onDestroy")
-
-    }
 }

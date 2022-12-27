@@ -24,8 +24,29 @@
     </style>
 
     <style name="recommend_lecture_margin">
-        <item name="android:layout_marginStart">@dimen/recommend_section_margin</item>
-        <item name="android:layout_marginBottom">@dimen/recommend_section_margin</item>
+        <item name="android:layout_marginStart">@dimen/section_start_margin</item>
+        <item name="android:layout_marginBottom">@dimen/section_start_margin</item>
     </style>
 
+    <style name="Widget.MyUdemy.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:overScrollMode">never</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:minWidth">90dp</item>
+        <item name="android:minHeight">53dp</item>
+        <item name="android:textAppearance">@style/chipText</item>
+        <item name="android:checkable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:selectable">true</item>
+        <item name="chipBackgroundColor">@color/chip_back_selector</item>
+
+    </style>
+
+    <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+    <style name="chipText" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/chip_text_selector</item>
+    </style>
 </resources>

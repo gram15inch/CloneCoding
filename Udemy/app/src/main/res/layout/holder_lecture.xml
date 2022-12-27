@@ -12,14 +12,14 @@
             android:id="@+id/holder_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/recommend_section_margin"
+            android:layout_marginEnd="@dimen/section_start_margin"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/lecture_image"
                 android:layout_width="230dp"
                 android:layout_height="130dp"
-                android:background="@drawable/sp_round_background"
+                android:background="@drawable/sp_round_background_5"
                 android:scaleType="fitCenter"
                 android:clipToOutline="true"
                 android:layout_marginBottom="@dimen/recommend_lecture_holder_margin_bottom"

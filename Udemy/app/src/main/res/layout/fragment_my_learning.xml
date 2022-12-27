@@ -5,29 +5,94 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="java.util.List" />
         <import type="com.learning.myudemy.domain.Lecture" />
-
     </data>
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadeScrollbars="true"
-        android:overScrollMode="never"
-        tools:context=".presentation.recommendation.RecommendationFragment">
-
-        <LinearLayout
+        android:layout_height="match_parent">
+        <HorizontalScrollView
+            android:id="@+id/my_learning_container_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="@dimen/section_start_margin"
+            android:scrollbars="none"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MyUdemy.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="전부"
+                    android:textColor="@color/chip_text_selector"
+                    app:chipStrokeWidth="2dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MyUdemy.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="다운로드됨"
+                    android:textColor="@color/chip_text_selector"
+                    app:chipStrokeWidth="2dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MyUdemy.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보관됨"
+                    android:textColor="@color/chip_text_selector"
+                    app:chipStrokeWidth="2dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MyUdemy.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="즐겨찾기 추가됨"
+                    android:textColor="@color/chip_text_selector"
+                    app:chipStrokeWidth="2dp" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fadeScrollbars="true"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/my_learning_container_category"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="MyLearningFragment"
-                style="@style/prototype_text"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    </ScrollView>
+                <include android:id="@+id/testlayout1" layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+                <include layout="@layout/layout_list_lecture" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
