@@ -32,13 +32,11 @@ class RecommendationFragment : LifecycleFragment() {
     lateinit var binding : FragmentRecommendationBinding
     private val viewModel: RecommendationViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recommendation, container, false)
-        Timber.tag("lifecycle").d("${this.javaClass.simpleName} : ${object{}.javaClass.enclosingMethod.name}")
         return binding.root
     }
 

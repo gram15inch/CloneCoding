@@ -23,11 +23,5 @@ class VideoPlayActivity : LifecycleActivity() {
         binding.videoPlayMain.setMediaController(MediaController(this))     // 없으면 에러
         binding.videoPlayMain.requestFocus()    // 준비하는 과정을 미리함
 
-        binding.btnStart.setOnClickListener{
-            binding.videoPlayMain.start()
-        }
-        binding.btnEnd.setOnClickListener {
-            binding.videoPlayMain.pause()
-        }
     }
 }
