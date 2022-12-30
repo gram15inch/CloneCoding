@@ -6,12 +6,12 @@ apply plugin: 'kotlin-kapt'
 
 android {
     namespace 'com.learning.myudemy'
-    compileSdk 32
+    compileSdk parent.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.learning.myudemy"
-        minSdk 31
-        targetSdk 32
+        minSdk parent.ext.minSdkVersion
+        targetSdk parent.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
