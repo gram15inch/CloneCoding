@@ -14,6 +14,7 @@ class VideoPlayActivityViewModel : ViewModel() {
     var currentWindow = 0
     var playbackPosition = 0L
 
+    var url = 0
     fun checkBackgroundPlay(): Boolean {
         return true
     }

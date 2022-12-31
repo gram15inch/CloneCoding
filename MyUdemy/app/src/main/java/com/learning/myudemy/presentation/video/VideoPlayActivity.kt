@@ -12,12 +12,15 @@ import com.learning.myudemy.R
 import com.learning.myudemy.databinding.ActivityVideoPlayBinding
 import com.learning.myudemy.presentation.base.LifecycleActivity
 
+
 class VideoPlayActivity : LifecycleActivity() {
     lateinit var binding: ActivityVideoPlayBinding
     private val viewModel : VideoPlayActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val intent = intent //전달할 데이터를 받을 Intent
+        viewModel.url = intent.getIntExtra("videoUrl",0)
         viewModel.refreshVideoState()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_video_play)
     }
@@ -62,7 +65,7 @@ class VideoPlayActivity : LifecycleActivity() {
             .also { exoPlayer ->
                 binding.videoPlayMain.player = exoPlayer
 
-                val mediaItem = MediaItem.fromUri(getString(R.string.media_url_mp4))
+                val mediaItem = MediaItem.fromUri(getString(viewModel.url))
                 exoPlayer.setMediaItem(mediaItem)
 
                 val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3));
