@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentMyLearningBinding
-import com.learning.myudemy.domain.Lecture
 import com.learning.myudemy.presentation.base.LifecycleFragment
 import com.learning.myudemy.presentation.video.VideoPlayActivity
 
@@ -25,7 +24,7 @@ class MyLearningFragment : LifecycleFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_learning, container, false)
-        binding.testlayout1.lectureListContainer.setOnClickListener {
+        binding.myLearningList.lectureListContainer.setOnClickListener {
             val intent = Intent(context,VideoPlayActivity::class.java)
             intent.putExtra("videoUrl", R.string.media_url_mp4);
             startActivity(intent)

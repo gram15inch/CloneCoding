@@ -19,7 +19,7 @@ class VideoPlayActivity : LifecycleActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent = intent //전달할 데이터를 받을 Intent
+        val intent = intent // 전달할 데이터를 받을 Intent
         viewModel.url = intent.getIntExtra("videoUrl",0)
         viewModel.refreshVideoState()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_video_play)
@@ -68,8 +68,8 @@ class VideoPlayActivity : LifecycleActivity() {
                 val mediaItem = MediaItem.fromUri(getString(viewModel.url))
                 exoPlayer.setMediaItem(mediaItem)
 
-                val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3));
-                exoPlayer.addMediaItem(secondMediaItem);
+                val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
+                exoPlayer.addMediaItem(secondMediaItem)
 
                 exoPlayer.playWhenReady = viewModel.playWhenReady
                 exoPlayer.seekTo(viewModel.currentWindow, viewModel.playbackPosition)

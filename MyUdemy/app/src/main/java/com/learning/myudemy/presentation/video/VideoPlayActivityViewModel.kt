@@ -3,9 +3,6 @@ package com.learning.myudemy.presentation.video
 import androidx.lifecycle.ViewModel
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.learning.myudemy.UdemyApplication
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class VideoPlayActivityViewModel : ViewModel() {
@@ -26,7 +23,6 @@ class VideoPlayActivityViewModel : ViewModel() {
             playbackPosition = getString("playbackPosition", "0").toLong()
             Timber.d("videoState: $playWhenReady, $currentWindow, $playbackPosition ")
         }
-
     }
 
     fun storeVideoState() {

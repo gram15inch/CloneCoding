@@ -141,6 +141,15 @@
                         <include layout="@layout/layout_list_video_lecture"/>
                         <include layout="@layout/layout_list_video_lecture"/>
                         <include layout="@layout/layout_list_video_lecture"/>
+  <include layout="@layout/layout_list_video_lecture"/>
+                        <include layout="@layout/layout_list_video_lecture"/>
+  <include layout="@layout/layout_list_video_lecture"/>
+                        <include layout="@layout/layout_list_video_lecture"/>
+  <include layout="@layout/layout_list_video_lecture"/>
+                        <include layout="@layout/layout_list_video_lecture"/> <include layout="@layout/layout_list_video_lecture"/>
+                        <include layout="@layout/layout_list_video_lecture"/> <include layout="@layout/layout_list_video_lecture"/>
+                        <include layout="@layout/layout_list_video_lecture"/> <include layout="@layout/layout_list_video_lecture"/>
+                        <include layout="@layout/layout_list_video_lecture"/>
 
 
 

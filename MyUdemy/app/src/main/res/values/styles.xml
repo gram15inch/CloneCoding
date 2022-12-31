@@ -39,6 +39,8 @@
         <item name="android:clickable">true</item>
         <item name="android:selectable">true</item>
         <item name="chipBackgroundColor">@color/chip_back_selector</item>
+        <item name="chipStrokeWidth">2dp</item>
+
 
     </style>
 

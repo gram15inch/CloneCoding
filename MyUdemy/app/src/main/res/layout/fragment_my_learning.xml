@@ -16,7 +16,6 @@
             android:id="@+id/my_learning_container_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/section_start_margin"
             android:scrollbars="none"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -24,6 +23,7 @@
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/section_start_margin"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
@@ -33,7 +33,7 @@
                     android:checked="true"
                     android:text="전부"
                     android:textColor="@color/chip_text_selector"
-                    app:chipStrokeWidth="2dp" />
+                     />
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MyUdemy.Chip.Choice"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="다운로드됨"
                     android:textColor="@color/chip_text_selector"
-                    app:chipStrokeWidth="2dp" />
+                     />
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MyUdemy.Chip.Choice"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include android:id="@+id/testlayout1" layout="@layout/layout_list_lecture" />
+                <include android:id="@+id/my_Learning_list" layout="@layout/layout_list_lecture" />
 
                 <include layout="@layout/layout_list_lecture" />
 
