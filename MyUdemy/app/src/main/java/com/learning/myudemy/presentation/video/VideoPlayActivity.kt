@@ -3,6 +3,8 @@ package com.learning.myudemy.presentation.video
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -12,14 +14,48 @@ import com.learning.myudemy.presentation.base.LifecycleActivity
 
 class VideoPlayActivity : LifecycleActivity() {
     lateinit var binding: ActivityVideoPlayBinding
-    private var player: SimpleExoPlayer? = null
+    private val viewModel : VideoPlayActivityViewModel by viewModels()
 
-    private var playWhenReady = true
-    private var currentWindow = 0
-    private var playbackPosition = 0L
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.refreshVideoState()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_video_play)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        if(viewModel.checkBackgroundPlay())
+            backgroundVideo(false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initializePlayer()
+    }
+    public override fun onResume() {
+        super.onResume()
+        binding.videoPlayMain.player?.play()
+    }
+
+    public override fun onPause() {
+        super.onPause()
+        playerStop()
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        if(viewModel.checkBackgroundPlay())
+            backgroundVideo(true)
+        viewModel.storeVideoState()
+    }
+
+    public override fun onDestroy() {
+        super.onDestroy()
+        releasePlayer()
+    }
 
     private fun initializePlayer() {
-        player = SimpleExoPlayer.Builder(this)
+        viewModel.player = SimpleExoPlayer.Builder(this)
             .build()
             .also { exoPlayer ->
                 binding.videoPlayMain.player = exoPlayer
@@ -30,36 +66,24 @@ class VideoPlayActivity : LifecycleActivity() {
                 val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3));
                 exoPlayer.addMediaItem(secondMediaItem);
 
-                exoPlayer.playWhenReady = playWhenReady
-                exoPlayer.seekTo(currentWindow, playbackPosition)
+                exoPlayer.playWhenReady = viewModel.playWhenReady
+                exoPlayer.seekTo(viewModel.currentWindow, viewModel.playbackPosition)
                 exoPlayer.prepare()
             }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_video_play)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        
-    }
-    public override fun onResume() {
-        super.onResume()
-        if (player == null) {
-            initializePlayer()
+    private fun playerStop() {
+        binding.videoPlayMain.player?.stop()
+        viewModel.player?.run {
+            viewModel.playbackPosition = this.currentPosition
+            viewModel.currentWindow = this.currentWindowIndex
+            viewModel.playWhenReady = this.playWhenReady
         }
     }
 
-    public override fun onPause() {
-        super.onPause()
-        releasePlayer()
-    }
-
-    public override fun onStop() {
-        super.onStop()
-
+    private fun releasePlayer() {
+        viewModel.player?.release()
+        viewModel.player = null
     }
 
     @SuppressLint("InlinedApi")
@@ -73,13 +97,8 @@ class VideoPlayActivity : LifecycleActivity() {
     }
 
 
-    private fun releasePlayer() {
-        player?.run {
-            playbackPosition = this.currentPosition
-            currentWindow = this.currentWindowIndex
-            playWhenReady = this.playWhenReady
-            release()
-        }
-        player = null
+    private fun backgroundVideo(bool: Boolean){
+        val text = if(bool) "start" else "stop"
+        Toast.makeText(this,"background $text!!",Toast.LENGTH_SHORT).show()
     }
 }
