@@ -55,6 +55,8 @@ class VideoPlayActivity : LifecycleActivity() {
     }
 
     private fun initializePlayer() {
+        if(viewModel.player != null)
+            releasePlayer()
         viewModel.player = SimpleExoPlayer.Builder(this)
             .build()
             .also { exoPlayer ->

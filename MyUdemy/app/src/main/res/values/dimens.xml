@@ -6,5 +6,6 @@
     <dimen name="recommend_lecture_holder_margin_bottom">4dp</dimen>
     <dimen name="recommend_lecture_holder_section_title_margin">8dp</dimen>
     <dimen name="lecture_list_title_start_margin">10dp</dimen>
+    <dimen name="video_lecutre_list_number_margin">25dp</dimen>
 
 </resources>
