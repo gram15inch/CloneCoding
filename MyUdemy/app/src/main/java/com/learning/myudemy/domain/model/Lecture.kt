@@ -1,4 +1,4 @@
-package com.learning.myudemy.domain
+package com.learning.myudemy.domain.model
 
 import androidx.recyclerview.widget.DiffUtil
 

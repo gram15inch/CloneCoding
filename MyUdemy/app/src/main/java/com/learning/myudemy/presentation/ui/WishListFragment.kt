@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.wishlist
+package com.learning.myudemy.presentation.ui
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.learning.myudemy.R
+import com.learning.myudemy.presentation.viewModel.WishListViewModel
 
 class WishListFragment : Fragment() {
 

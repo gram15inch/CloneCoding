@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.search
+package com.learning.myudemy.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".presentation.bottom.LectureBottomSheetFragment">
+    tools:context=".presentation.ui.bottom.LectureBottomSheetFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -1,13 +1,16 @@
-package com.learning.myudemy.presentation.recommendation
+package com.learning.myudemy.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.learning.myudemy.R
-import com.learning.myudemy.domain.Lecture
+import com.learning.myudemy.domain.model.Lecture
+import com.learning.myudemy.domain.repository.LectureRepository
 import com.learning.myudemy.presentation.adapter.LectureAdapter
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 
-class RecommendationViewModel @Inject constructor() : ViewModel() {
+@HiltViewModel
+class RecommendationViewModel @Inject constructor(private val lectureRepository: LectureRepository ) : ViewModel() {
 
     val webLectures = getWebList()
     val reactLectures = getReactList()

@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.mylearning
+package com.learning.myudemy.presentation.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentMyLearningBinding
 import com.learning.myudemy.presentation.base.LifecycleFragment
-import com.learning.myudemy.presentation.video.VideoPlayActivity
+import com.learning.myudemy.presentation.viewModel.MyLearningViewModel
 
 class MyLearningFragment : LifecycleFragment() {
 
@@ -25,7 +25,7 @@ class MyLearningFragment : LifecycleFragment() {
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_learning, container, false)
         binding.myLearningList.lectureListContainer.setOnClickListener {
-            val intent = Intent(context,VideoPlayActivity::class.java)
+            val intent = Intent(context, VideoPlayActivity::class.java)
             intent.putExtra("videoUrl", R.string.media_url_mp4);
             startActivity(intent)
         }

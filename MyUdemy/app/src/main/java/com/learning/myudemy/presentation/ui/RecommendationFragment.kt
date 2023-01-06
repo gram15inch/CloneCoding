@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.recommendation
+package com.learning.myudemy.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentRecommendationBinding
-import com.learning.myudemy.domain.Lecture
+import com.learning.myudemy.domain.model.Lecture
 import com.learning.myudemy.presentation.adapter.LectureAdapter
 import com.learning.myudemy.presentation.base.LifecycleFragment
+import com.learning.myudemy.presentation.viewModel.RecommendationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 @BindingAdapter("lectureList")
 fun bindRecyclerView(view: RecyclerView,list:List<Lecture>){
@@ -23,6 +25,7 @@ fun bindRecyclerView(view: RecyclerView,list:List<Lecture>){
     view.layoutManager = LinearLayoutManager(view.rootView.context,LinearLayoutManager.HORIZONTAL,false)
 }
 
+@AndroidEntryPoint
 class RecommendationFragment : LifecycleFragment() {
 
     lateinit var binding : FragmentRecommendationBinding
@@ -38,9 +41,8 @@ class RecommendationFragment : LifecycleFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.webList = viewModel.webLectures
-        binding.reactList = viewModel.reactLectures
-        binding.pythonList = viewModel.pythonLectures
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.webTitle="웹 관련강의"
         binding.reactTitle="리엑트 관련강의"
         binding.pythonTitle="파이썬 관련강의"

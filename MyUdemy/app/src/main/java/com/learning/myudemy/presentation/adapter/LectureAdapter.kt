@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.databinding.HolderLectureBinding
-import com.learning.myudemy.domain.Lecture
+import com.learning.myudemy.domain.model.Lecture
 import java.text.NumberFormat
 import java.util.*
 

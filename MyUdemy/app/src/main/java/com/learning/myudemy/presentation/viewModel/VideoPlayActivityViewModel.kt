@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.video
+package com.learning.myudemy.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.google.android.exoplayer2.SimpleExoPlayer

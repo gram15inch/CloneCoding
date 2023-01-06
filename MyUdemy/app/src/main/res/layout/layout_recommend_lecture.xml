@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="java.util.List" />
-        <import type="com.learning.myudemy.domain.Lecture" />
+        <import type="com.learning.myudemy.domain.model.Lecture"/>
         <variable
             name="webList"
             type="List&lt;Lecture>" />

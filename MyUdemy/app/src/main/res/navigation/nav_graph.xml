@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/recommendationFragment"
-        android:name="com.learning.myudemy.presentation.recommendation.RecommendationFragment"
+        android:name="com.learning.myudemy.presentation.ui.RecommendationFragment"
         android:label="추천"
         tools:layout="@layout/fragment_recommendation" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.learning.myudemy.presentation.search.SearchFragment"
+        android:name="com.learning.myudemy.presentation.ui.SearchFragment"
         android:label="검색"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/myLearningFragment"
-        android:name="com.learning.myudemy.presentation.mylearning.MyLearningFragment"
+        android:name="com.learning.myudemy.presentation.ui.MyLearningFragment"
         android:label="내 강의"
         tools:layout="@layout/fragment_my_learning" />
     <fragment
         android:id="@+id/wishListFragment"
-        android:name="com.learning.myudemy.presentation.wishlist.WishListFragment"
+        android:name="com.learning.myudemy.presentation.ui.WishListFragment"
         android:label="Wishlist"
         tools:layout="@layout/fragment_wish_list" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.learning.myudemy.presentation.account.AccountFragment"
+        android:name="com.learning.myudemy.presentation.ui.AccountFragment"
         android:label="계정"
         tools:layout="@layout/fragment_account" />
 </navigation>

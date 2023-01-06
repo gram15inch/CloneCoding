@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MyUdemy"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.video.VideoPlayActivity"
+            android:name=".presentation.ui.VideoPlayActivity"
             android:exported="true"
             android:theme="@style/video_theme">
             <meta-data

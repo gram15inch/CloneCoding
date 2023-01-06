@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation
+package com.learning.myudemy.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar

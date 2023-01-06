@@ -1,13 +1,13 @@
-package com.learning.myudemy.presentation.search
+package com.learning.myudemy.presentation.ui
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.learning.myudemy.R
 import com.learning.myudemy.presentation.base.LifecycleFragment
+import com.learning.myudemy.presentation.viewModel.SearchViewModel
 
 class SearchFragment : LifecycleFragment() {
 

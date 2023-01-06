@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.bottom
+package com.learning.myudemy.presentation.ui.bottom
 
 import android.os.Bundle
 import android.view.LayoutInflater

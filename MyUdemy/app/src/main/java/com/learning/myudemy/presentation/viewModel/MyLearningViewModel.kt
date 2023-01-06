@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.mylearning
+package com.learning.myudemy.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 

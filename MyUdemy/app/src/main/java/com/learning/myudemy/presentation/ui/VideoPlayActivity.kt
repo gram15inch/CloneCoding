@@ -1,4 +1,4 @@
-package com.learning.myudemy.presentation.video
+package com.learning.myudemy.presentation.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.ActivityVideoPlayBinding
 import com.learning.myudemy.presentation.base.LifecycleActivity
+import com.learning.myudemy.presentation.viewModel.VideoPlayActivityViewModel
 
 
 class VideoPlayActivity : LifecycleActivity() {
