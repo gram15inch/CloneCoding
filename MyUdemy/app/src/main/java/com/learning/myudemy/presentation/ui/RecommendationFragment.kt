@@ -11,20 +11,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentRecommendationBinding
-import com.learning.myudemy.domain.model.Lecture
 import com.learning.myudemy.presentation.adapter.LectureAdapter
+import com.learning.myudemy.presentation.adapter.RecommendAdapter
 import com.learning.myudemy.presentation.base.LifecycleFragment
+import com.learning.myudemy.presentation.model.UiLecture
+import com.learning.myudemy.presentation.model.UiRecommend
 import com.learning.myudemy.presentation.viewModel.RecommendationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @BindingAdapter("lectureList")
-fun bindRecyclerView(view: RecyclerView,list:List<Lecture>){
+fun bindLectureList(view: RecyclerView,list:List<UiLecture>?){
     val adapter = LectureAdapter(){}
-    adapter.submitList(list)
+    adapter.submitList(list?: emptyList())
     view.adapter = adapter
     view.layoutManager = LinearLayoutManager(view.rootView.context,LinearLayoutManager.HORIZONTAL,false)
 }
-
+@BindingAdapter("recommendList")
+fun bindRmdList(view: RecyclerView,list:List<UiRecommend>?){
+    val adapter = RecommendAdapter()
+    adapter.submitList(list?: emptyList())
+    view.adapter = adapter
+}
 @AndroidEntryPoint
 class RecommendationFragment : LifecycleFragment() {
 
@@ -43,10 +50,6 @@ class RecommendationFragment : LifecycleFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.webTitle="웹 관련강의"
-        binding.reactTitle="리엑트 관련강의"
-        binding.pythonTitle="파이썬 관련강의"
-
     }
 
 }

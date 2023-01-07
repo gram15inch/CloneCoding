@@ -1,5 +1,8 @@
 package com.learning.myudemy
 
+import com.learning.myudemy.domain.repository.CategoryRepository
+import com.learning.myudemy.domain.repository.LectureRepository
+import com.learning.myudemy.presentation.viewModel.RecommendationViewModel
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +15,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+
     }
 }

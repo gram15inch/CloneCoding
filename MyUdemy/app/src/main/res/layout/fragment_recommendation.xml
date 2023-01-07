@@ -8,48 +8,26 @@
         <variable
             name="viewModel"
             type="com.learning.myudemy.presentation.viewModel.RecommendationViewModel" />
-        <variable name="webTitle" type="String" />
-        <variable name="reactTitle" type="String" />
-        <variable name="pythonTitle" type="String" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="true"
-        android:overScrollMode="never"
         tools:context=".presentation.ui.recommendation.RecommendationFragment">
 
-        <LinearLayout
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommend_list_ryc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fadeScrollbars="true"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:recommendList="@{viewModel.recommendList}"/>
 
-            <ImageView
-                android:id="@+id/banner_image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bn_banner_main" />
-            <include layout="@layout/layout_recommend_intro" />
-
-            <include
-                layout="@layout/layout_recommend_lecture"
-                android:background="@color/grey"
-                app:lectureTitle="@{webTitle}"
-                app:webList="@{viewModel.webLectures}" />
-            <include
-                layout="@layout/layout_banner_info"/>
-            <include
-                layout="@layout/layout_recommend_lecture"
-                app:lectureTitle="@{reactTitle}"
-                app:webList="@{viewModel.reactLectures}" />
-
-            <include
-                layout="@layout/layout_recommend_lecture"
-                app:lectureTitle="@{pythonTitle}"
-                app:webList="@{viewModel.pythonLectures}" />
-        </LinearLayout>
-
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

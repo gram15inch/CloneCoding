@@ -2,6 +2,9 @@ package com.learning.myudemy
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.learning.myudemy.domain.repository.CategoryRepository
+import com.learning.myudemy.domain.repository.LectureRepository
+import com.learning.myudemy.presentation.viewModel.RecommendationViewModel
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,6 +22,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.learning.myudemy", appContext.packageName)
+        val a = RecommendationViewModel(LectureRepository(), CategoryRepository())
+        assertEquals(a.recommendList.value!!.size, 1)
     }
 }

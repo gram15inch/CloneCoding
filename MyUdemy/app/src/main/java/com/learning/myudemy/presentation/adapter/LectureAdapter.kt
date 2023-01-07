@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.databinding.HolderLectureBinding
-import com.learning.myudemy.domain.model.Lecture
+import com.learning.myudemy.presentation.model.UiLecture
 import java.text.NumberFormat
 import java.util.*
 
-class LectureAdapter(private val onItemClicked: (Lecture) -> Unit) :
-    ListAdapter<Lecture, LectureAdapter.LectureHolder>(DiffCallback) {
+class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
+    ListAdapter<UiLecture, LectureAdapter.LectureHolder>(DiffCallback) {
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<Lecture>() {
-            override fun areItemsTheSame(oldItem: Lecture, newItem: Lecture): Boolean {
+        private val DiffCallback = object : DiffUtil.ItemCallback<UiLecture>() {
+            override fun areItemsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
                 return oldItem.lectureId == newItem.lectureId
             }
 
-            override fun areContentsTheSame(oldItem: Lecture, newItem: Lecture): Boolean {
+            override fun areContentsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
                 return (oldItem.lectureId == newItem.lectureId)
                         && (oldItem.lectureName == newItem.lectureName)
                         && (oldItem.Instructor == newItem.Instructor)
@@ -38,12 +38,12 @@ class LectureAdapter(private val onItemClicked: (Lecture) -> Unit) :
 
     class LectureHolder(var binding:HolderLectureBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(lecture: Lecture) {
+        fun bind(Lecture: UiLecture) {
             binding.apply {
-                lectureImage.setImageResource(lecture.lectureThumbnail)
-                lectureName.text = lecture.lectureName
-                lecturePrice.text = moneyFormat.format(lecture.lecturePrice)
-                lectureInstructor.text = lecture.Instructor
+                lectureImage.setImageResource(Lecture.lectureThumbnail)
+                lectureName.text = Lecture.lectureName
+                lecturePrice.text = moneyFormat.format(Lecture.lecturePrice)
+                lectureInstructor.text = Lecture.Instructor
             }
         }
     }
