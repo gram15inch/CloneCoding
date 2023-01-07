@@ -28,6 +28,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <CheckBox
+            android:id="@+id/lecture_ck_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/lecture_image_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lecture_list_image" />
+
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/lecture_image_barrier"
             android:layout_width="wrap_content"
@@ -43,6 +52,7 @@
             android:text="Learn Android Application Development"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:maxLines="1"
             app:layout_constraintStart_toEndOf="@id/lecture_image_barrier"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,6 +63,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginStart="@dimen/lecture_list_title_start_margin"
             android:text="ProgramMe Programming"
+            android:maxLines="1"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/lecture_image_barrier"
             app:layout_constraintTop_toBottomOf="@id/lecture_list_title" />
@@ -80,6 +91,7 @@
             app:layout_constraintTop_toTopOf="@id/lecture_list_detail_logo" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"

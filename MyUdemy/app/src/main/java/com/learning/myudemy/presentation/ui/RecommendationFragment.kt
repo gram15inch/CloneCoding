@@ -32,17 +32,19 @@ fun bindRmdList(view: RecyclerView,list:List<UiRecommend>?){
     adapter.submitList(list?: emptyList())
     view.adapter = adapter
 }
+
 @AndroidEntryPoint
 class RecommendationFragment : LifecycleFragment() {
 
-    lateinit var binding : FragmentRecommendationBinding
+    var _binding : FragmentRecommendationBinding? =null
+    private val binding get() = _binding!!
     private val viewModel: RecommendationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recommendation, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recommendation, container, false)
         return binding.root
     }
 
@@ -52,4 +54,8 @@ class RecommendationFragment : LifecycleFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

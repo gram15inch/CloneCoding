@@ -6,9 +6,11 @@
 
     <data>
 
-        <import type="java.util.List" />
-        <import type="com.learning.myudemy.domain.model.Lecture" />
+        <variable
+            name="viewModel"
+            type="com.learning.myudemy.presentation.viewModel.MyLearningViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,39 +62,18 @@
                     app:chipStrokeWidth="2dp" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
-        <ScrollView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_learning_list_ryc"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:fadeScrollbars="true"
-            android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@id/my_learning_container_category"
+            app:myLeaningList="@{viewModel.lectures}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_learning_container_category" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include android:id="@+id/my_Learning_list" layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-                <include layout="@layout/layout_list_lecture" />
-
-            </LinearLayout>
-
-        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

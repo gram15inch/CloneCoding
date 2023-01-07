@@ -12,6 +12,7 @@ import com.learning.myudemy.presentation.model.UiLecture
 import java.text.NumberFormat
 import java.util.*
 
+
 class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
     ListAdapter<UiLecture, LectureAdapter.LectureHolder>(DiffCallback) {
 
@@ -25,10 +26,10 @@ class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
                 return (oldItem.lectureId == newItem.lectureId)
                         && (oldItem.lectureName == newItem.lectureName)
                         && (oldItem.Instructor == newItem.Instructor)
-                        && (oldItem.gradeScore == newItem.gradeScore
+                        && (oldItem.gradeScore == newItem.gradeScore)
                         && (oldItem.gradeCount == newItem.gradeCount)
                         && (oldItem.lecturePrice == newItem.lecturePrice)
-                        && (oldItem.isBestSeller == newItem.isBestSeller))
+                        && (oldItem.isBestSeller == newItem.isBestSeller)
             }
         }
 
