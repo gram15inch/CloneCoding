@@ -91,10 +91,11 @@
             app:layout_constraintTop_toTopOf="@id/lecture_list_detail_logo" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/lecture_list_item_start_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:clickable="true"
             android:text="강의 시작"
             android:textColor="@color/purple_500"
             android:textSize="14sp"

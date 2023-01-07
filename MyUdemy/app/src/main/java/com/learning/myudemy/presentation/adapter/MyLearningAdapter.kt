@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.databinding.LayoutListItemMyLearningBinding
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+
 class MyLearningAdapter @Inject constructor() : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.LectureDetailHolder>(DiffCallback) {
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<UiMyLeaningLecture>() {
@@ -23,16 +22,23 @@ class MyLearningAdapter @Inject constructor() : ListAdapter<UiMyLeaningLecture, 
             }
         }
     }
+
    inner class LectureDetailHolder(var binding: LayoutListItemMyLearningBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(UiMyLeaningLecture: UiMyLeaningLecture,position: Int) {
+        fun bind(lecture: UiMyLeaningLecture,position: Int) {
             binding.apply {
-                lectureListImage.setImageResource(UiMyLeaningLecture.imgUrl)
-                lectureListTitle.text = UiMyLeaningLecture.title
-                lectureListSubTitle.text = UiMyLeaningLecture.subTitle
-                lectureCkBox.isChecked = UiMyLeaningLecture.isChecked
+                lectureListImage.setImageResource(lecture.imgUrl)
+                lectureListTitle.text = lecture.title
+                lectureListSubTitle.text = lecture.subTitle
+                lectureCkBox.isChecked = lecture.isChecked
                 lectureCkBox.setOnClickListener {
                     currentList[position].isChecked= (it as CheckBox).isChecked
+                }
+                lectureListItemStartTxt.setOnClickListener {
+                   val oldList= mutableListOf<UiMyLeaningLecture>()
+                    oldList.addAll(currentList)
+                    oldList.remove(lecture)
+                    this@MyLearningAdapter.submitList(oldList)
                 }
             }
         }

@@ -27,4 +27,10 @@ data class UiCategory(val id: Int, val name: String)
 enum class BannerTag { Image, Intro, Partner }
 data class UiBanner(val tag: BannerTag, val url: String? = null)
 
-data class UiMyLeaningLecture(val id: Int, val title: String, val subTitle:String,val imgUrl:Int , var isChecked :Boolean)
+data class UiMyLeaningLecture(
+    val id: Int,
+    val title: String,
+    val subTitle: String,
+    val imgUrl: Int,
+    var isChecked: Boolean
+)

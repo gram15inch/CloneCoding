@@ -23,13 +23,8 @@ class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
             }
 
             override fun areContentsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
-                return (oldItem.lectureId == newItem.lectureId)
-                        && (oldItem.lectureName == newItem.lectureName)
-                        && (oldItem.Instructor == newItem.Instructor)
-                        && (oldItem.gradeScore == newItem.gradeScore)
-                        && (oldItem.gradeCount == newItem.gradeCount)
-                        && (oldItem.lecturePrice == newItem.lecturePrice)
-                        && (oldItem.isBestSeller == newItem.isBestSeller)
+                return oldItem == newItem
+
             }
         }
 

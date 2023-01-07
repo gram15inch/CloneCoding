@@ -18,7 +18,7 @@ class RecommendAdapter : ListAdapter<UiRecommend, RecommendAdapter.RecommendHold
             }
 
             override fun areContentsTheSame(oldItem: UiRecommend, newItem: UiRecommend): Boolean {
-                return (oldItem.id == newItem.id)
+                return oldItem == newItem
             }
         }
 
