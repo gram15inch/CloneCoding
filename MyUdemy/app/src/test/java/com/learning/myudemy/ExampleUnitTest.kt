@@ -1,8 +1,7 @@
 package com.learning.myudemy
 
 import com.learning.myudemy.domain.model.Category
-
-
+import kotlinx.coroutines.*
 
 
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -21,5 +20,27 @@ class ExampleUnitTest {
         val list2 = listOf(Category(1,"hi21"),Category(1,"hi22"))
         assertEquals(true,list1==list11)
         assertEquals(false,list1==list2)
+    }
+
+    @Test
+    fun test1(){
+
+
+         CoroutineScope(Dispatchers.IO).launch {
+                repeat(10){
+                    Thread.sleep(1000)
+                    println("k1 $it")
+                }
+
+            }
+          CoroutineScope(Dispatchers.IO).launch {
+              repeat(10){
+                  Thread.sleep(1000)
+                  println("k2 $it")
+              }
+            }
+
+        Thread.sleep(5000)
+
     }
 }

@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.InverseBindingAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentMyLearningBinding
-import com.learning.myudemy.domain.model.Lecture
 import com.learning.myudemy.presentation.adapter.MyLearningAdapter
 import com.learning.myudemy.presentation.base.LifecycleFragment
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
 import com.learning.myudemy.presentation.viewModel.MyLearningViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @BindingAdapter("myLeaningList")
 fun bindMyLeaningList(view:RecyclerView,list:List<UiMyLeaningLecture>?){
@@ -36,8 +33,6 @@ class MyLearningFragment : LifecycleFragment() {
 
     private val viewModel: MyLearningViewModel by viewModels()
 
-    @Inject lateinit var adapter : MyLearningAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,7 +45,7 @@ class MyLearningFragment : LifecycleFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.myLearningListRyc.adapter = adapter
+        binding.myLearningListRyc.adapter = MyLearningAdapter()
     }
     override fun onDestroyView() {
         super.onDestroyView()

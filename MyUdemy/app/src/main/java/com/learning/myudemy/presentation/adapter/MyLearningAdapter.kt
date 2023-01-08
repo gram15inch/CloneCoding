@@ -8,20 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.databinding.LayoutListItemMyLearningBinding
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
-import javax.inject.Inject
 
 
-class MyLearningAdapter @Inject constructor() : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.LectureDetailHolder>(DiffCallback) {
-    companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<UiMyLeaningLecture>() {
-            override fun areItemsTheSame(oldItem: UiMyLeaningLecture, newItem: UiMyLeaningLecture): Boolean {
-                return oldItem.id == newItem.id
-            }
-            override fun areContentsTheSame(oldItem: UiMyLeaningLecture, newItem: UiMyLeaningLecture): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
+class MyLearningAdapter : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.LectureDetailHolder>(DiffCallback) {
+
 
    inner class LectureDetailHolder(var binding: LayoutListItemMyLearningBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,14 +24,17 @@ class MyLearningAdapter @Inject constructor() : ListAdapter<UiMyLeaningLecture, 
                 lectureCkBox.setOnClickListener {
                     currentList[position].isChecked= (it as CheckBox).isChecked
                 }
-                lectureListItemStartTxt.setOnClickListener {
-                   val oldList= mutableListOf<UiMyLeaningLecture>()
-                    oldList.addAll(currentList)
-                    oldList.remove(lecture)
-                    this@MyLearningAdapter.submitList(oldList)
-                }
             }
         }
+       fun deleteList(lecture: UiMyLeaningLecture){
+           binding.lectureListItemStartTxt.setOnClickListener {
+               val oldList= mutableListOf<UiMyLeaningLecture>()
+               oldList.addAll(currentList)
+               oldList.remove(lecture)
+               this@MyLearningAdapter.submitList(oldList)
+           }
+
+       }
     }
 
     override fun onCreateViewHolder(
@@ -60,9 +53,21 @@ class MyLearningAdapter @Inject constructor() : ListAdapter<UiMyLeaningLecture, 
     override fun onBindViewHolder(holder: LectureDetailHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current,position)
+        holder.deleteList(current)
     }
 
     override fun getItemCount(): Int {
         return this.currentList.size
+    }
+
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<UiMyLeaningLecture>() {
+            override fun areItemsTheSame(oldItem: UiMyLeaningLecture, newItem: UiMyLeaningLecture): Boolean {
+                return oldItem.id == newItem.id
+            }
+            override fun areContentsTheSame(oldItem: UiMyLeaningLecture, newItem: UiMyLeaningLecture): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".presentation.ui.recommendation.RecommendationFragment">
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recommend_list_ryc"
             android:layout_width="match_parent"

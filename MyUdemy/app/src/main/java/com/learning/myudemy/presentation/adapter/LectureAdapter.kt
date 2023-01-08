@@ -16,22 +16,6 @@ import java.util.*
 class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
     ListAdapter<UiLecture, LectureAdapter.LectureHolder>(DiffCallback) {
 
-    companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<UiLecture>() {
-            override fun areItemsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
-                return oldItem.lectureId == newItem.lectureId
-            }
-
-            override fun areContentsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
-                return oldItem == newItem
-
-            }
-        }
-
-        @SuppressLint("ConstantLocale")
-        val moneyFormat: NumberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
-    }
-
     class LectureHolder(var binding:HolderLectureBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(Lecture: UiLecture) {
@@ -66,4 +50,21 @@ class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
     override fun getItemCount(): Int {
         return this.currentList.size
     }
+
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<UiLecture>() {
+            override fun areItemsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
+                return oldItem.lectureId == newItem.lectureId
+            }
+
+            override fun areContentsTheSame(oldItem: UiLecture, newItem: UiLecture): Boolean {
+                return oldItem == newItem
+
+            }
+        }
+
+        @SuppressLint("ConstantLocale")
+        val moneyFormat: NumberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
+    }
+
 }

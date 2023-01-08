@@ -11,19 +11,6 @@ import com.learning.myudemy.presentation.model.UiRecommend
 
 class RecommendAdapter : ListAdapter<UiRecommend, RecommendAdapter.RecommendHolder>(DiffCallback) {
 
-    companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<UiRecommend>() {
-            override fun areItemsTheSame(oldItem: UiRecommend, newItem: UiRecommend): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: UiRecommend, newItem: UiRecommend): Boolean {
-                return oldItem == newItem
-            }
-        }
-
-    }
-
     class RecommendHolder(var binding: LayoutRecommendLectureBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(uiRmd: UiRecommend) {
@@ -54,5 +41,17 @@ class RecommendAdapter : ListAdapter<UiRecommend, RecommendAdapter.RecommendHold
 
     override fun getItemCount(): Int {
         return this.currentList.size
+    }
+
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<UiRecommend>() {
+            override fun areItemsTheSame(oldItem: UiRecommend, newItem: UiRecommend): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: UiRecommend, newItem: UiRecommend): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

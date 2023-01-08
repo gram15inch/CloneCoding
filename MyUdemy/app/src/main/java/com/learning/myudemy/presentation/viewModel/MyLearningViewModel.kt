@@ -1,6 +1,5 @@
 package com.learning.myudemy.presentation.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MyLearningViewModel @Inject constructor(private val lectureRepository: LectureRepository ) : ViewModel() {
+class MyLearningViewModel @Inject constructor(private val lectureRepository: LectureRepository) :
+    ViewModel() {
     val lectures = MutableLiveData<List<UiMyLeaningLecture>>()
 
     init {
@@ -21,10 +21,13 @@ class MyLearningViewModel @Inject constructor(private val lectureRepository: Lec
 
     private fun lectureUpdate() {
         viewModelScope.launch {
-            lectures.value = lectureRepository.getLectureList(4).map { UiConverter.toUiMyLeaningLecture(it) }
+            lectures.value =
+                lectureRepository.getLectureList(4)
+                    .map { UiConverter.toUiMyLeaningLecture(it) }
         }
     }
-    fun updateLectures(list:List<UiMyLeaningLecture>){
+
+    fun updateLectures(list: List<UiMyLeaningLecture>) {
         lectures.value = list
     }
 }

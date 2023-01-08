@@ -28,9 +28,7 @@ fun bindLectureList(view: RecyclerView,list:List<UiLecture>?){
 }
 @BindingAdapter("recommendList")
 fun bindRmdList(view: RecyclerView,list:List<UiRecommend>?){
-    val adapter = RecommendAdapter()
-    adapter.submitList(list?: emptyList())
-    view.adapter = adapter
+    (view.adapter as RecommendAdapter).submitList(list?: emptyList())
 }
 
 @AndroidEntryPoint
@@ -52,6 +50,7 @@ class RecommendationFragment : LifecycleFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.recommendListRyc.adapter = RecommendAdapter()
     }
 
     override fun onDestroy() {
