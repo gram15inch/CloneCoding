@@ -6,6 +6,7 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.learning.myudemy.databinding.LayoutListItemMyLearningBinding
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
 
@@ -17,12 +18,17 @@ class MyLearningAdapter : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.Lect
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lecture: UiMyLeaningLecture,position: Int) {
             binding.apply {
-                lectureListImage.setImageResource(lecture.imgUrl)
+                if (lecture.imgRes!=0)
+                    lectureListImage.setImageResource(lecture.imgRes)
+                else
+                    Glide.with(binding.root)
+                        .load(lecture.imgUrl)
+                        .into(lectureListImage)
                 lectureListTitle.text = lecture.title
                 lectureListSubTitle.text = lecture.subTitle
                 lectureCkBox.isChecked = lecture.isChecked
                 lectureCkBox.setOnClickListener {
-                    currentList[position].isChecked= (it as CheckBox).isChecked
+                    currentList[position].isChecked = (it as CheckBox).isChecked
                 }
             }
         }

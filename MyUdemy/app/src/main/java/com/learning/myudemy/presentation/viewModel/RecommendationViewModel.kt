@@ -8,12 +8,10 @@ import com.learning.myudemy.R
 import com.learning.myudemy.domain.model.Lecture
 import com.learning.myudemy.domain.repository.CategoryRepository
 import com.learning.myudemy.domain.repository.LectureRepository
-import com.learning.myudemy.presentation.adapter.LectureAdapter
 import com.learning.myudemy.presentation.converter.UiConverter
 import com.learning.myudemy.presentation.model.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -93,6 +91,7 @@ class RecommendationViewModel @Inject constructor(
                 360,
                 109000,
                 R.drawable.tn_web1,
+                "",
                 true
             ),
             Lecture(
@@ -103,6 +102,7 @@ class RecommendationViewModel @Inject constructor(
                 181,
                 109000,
                 R.drawable.tn_web2,
+                "",
                 false
             ),
             Lecture(
@@ -113,6 +113,7 @@ class RecommendationViewModel @Inject constructor(
                 871,
                 129000,
                 R.drawable.tn_web3,
+                "",
                 false
             ),
             Lecture(
@@ -123,6 +124,7 @@ class RecommendationViewModel @Inject constructor(
                 360,
                 129000,
                 R.drawable.tn_web4,
+                "",
                 false
             ),
             Lecture(
@@ -133,6 +135,7 @@ class RecommendationViewModel @Inject constructor(
                 360,
                 129000,
                 R.drawable.tn_web5,
+                "",
                 false
             ),
 

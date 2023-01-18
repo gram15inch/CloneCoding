@@ -67,7 +67,7 @@
             android:id="@+id/my_learning_list_ryc"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:myLeaningList="@{viewModel.lectures}"
+            app:myLeaningList="@{viewModel.lecturesLive}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

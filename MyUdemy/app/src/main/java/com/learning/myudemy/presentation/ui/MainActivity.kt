@@ -1,6 +1,7 @@
 package com.learning.myudemy.presentation.ui
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
@@ -26,7 +27,7 @@ fun bindToolbar(view: Toolbar, appBarConfiguration : AppBarConfiguration, navCon
 }
 
 @AndroidEntryPoint
-class MainActivity : LifecycleActivity() {
+class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     lateinit var navHostFragment : NavHostFragment
     lateinit var navController: NavController

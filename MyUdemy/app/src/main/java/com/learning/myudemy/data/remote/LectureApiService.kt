@@ -2,22 +2,23 @@ package com.learning.myudemy.data.remote
 
 import com.learning.myudemy.BuildConfig
 import com.learning.myudemy.UdemyApplication
-import com.learning.myudemy.data.remote.model.TestData
+import com.learning.myudemy.data.remote.model.lecture.LectureResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 
 interface LectureApiService {
-    /* @GET("B552881/kmooc/courseList")
+    /* @GET("courseList")
      suspend fun getLectures(
          @Query("ServiceKey") key: String = UdemyApplication.LECTURE_API_KEY,
          @Query("Page") page: Int=1,
-     ): TestData*/
+     ): LectureResponse
+*/
     @GET("v1/course/list")
-    suspend fun getLectures2(
+    suspend fun getLectures(
         @Query("Page") page: Int = 1,
         @Query("SG_APIM") sg: String = BuildConfig.LECTURE_SG_API_KEY,
         @Query("ServiceKey") key: String = UdemyApplication.LECTURE_API_KEY,
         @Query("page") page2: Int = 1,
-    ): TestData
+    ): LectureResponse
 }

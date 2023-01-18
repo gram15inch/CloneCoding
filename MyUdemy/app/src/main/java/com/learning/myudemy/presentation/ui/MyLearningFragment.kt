@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.learning.myudemy.R
@@ -26,7 +28,7 @@ fun bindMyLeaningList(view:RecyclerView,list:List<UiMyLeaningLecture>?){
 }
 
 @AndroidEntryPoint
-class MyLearningFragment : LifecycleFragment() {
+class MyLearningFragment : Fragment() {
 
     private var _binding : FragmentMyLearningBinding? =null
     private val binding get() = _binding!!

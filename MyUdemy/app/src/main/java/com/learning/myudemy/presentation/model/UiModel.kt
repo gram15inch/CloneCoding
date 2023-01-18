@@ -31,6 +31,7 @@ data class UiMyLeaningLecture(
     val id: Int,
     val title: String,
     val subTitle: String,
-    val imgUrl: Int,
+    val imgRes: Int,
+    val imgUrl: String,
     var isChecked: Boolean
 )

@@ -1,4 +1,4 @@
-package com.learning.myudemy.data.remote.model
+package com.learning.myudemy.data.remote.model.lecture
 
 
 import com.squareup.moshi.Json

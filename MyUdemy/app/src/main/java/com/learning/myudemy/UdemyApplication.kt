@@ -31,7 +31,7 @@ class UdemyApplication:Application() {
     companion object {
         lateinit var prefs: PreferenceUtil
         const val LECTURE_API_KEY = BuildConfig.LECTURE_API_KEY
-        const val LECTURE_BASE_URL = "http://apis.data.go.kr/"
+        const val LECTURE_BASE_URL = "http://apis.data.go.kr/B552881/kmooc/"
         const val LECTURE_BASE_URL2 = "http://www.kmooc.kr/api/courses/"
     }
 

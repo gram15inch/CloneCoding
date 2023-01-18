@@ -1,11 +1,12 @@
-package com.learning.myudemy.data.remote.model
+package com.learning.myudemy.data.remote.model.lecture
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+
 @JsonClass(generateAdapter = true)
-data class Result(
+data class RemoteLecture(
     @Json(name = "ai_sec_yn")
     val aiSecYn: String,
     @Json(name = "audit_yn")
