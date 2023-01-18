@@ -17,8 +17,13 @@ class MyLearningViewModel @Inject constructor(private val lectureRepository: Lec
 
     init {
         lectureUpdate()
+        testRefresh()
     }
-
+    private fun testRefresh(){
+        viewModelScope.launch{
+            lectureRepository.refreshCache()
+        }
+    }
     private fun lectureUpdate() {
         viewModelScope.launch {
             lectures.value =

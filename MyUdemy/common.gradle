@@ -4,6 +4,11 @@ apply plugin: 'com.google.dagger.hilt.android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'de.mannodermaus.android-junit5'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def lecture_api_key = properties.getProperty('LECTURE_API_KEY')
+def lecture_sg_api_key = properties.getProperty('LECTURE_SG_API_KEY')
+
 android {
     namespace 'com.learning.myudemy'
     compileSdk parent.ext.compileSdkVersion
@@ -19,6 +24,9 @@ android {
         testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
         javaCompileOptions.annotationProcessorOptions.arguments['dagger.hilt.disableModulesHaveInstallInCheck'] = 'true'
+
+        buildConfigField "String", "LECTURE_API_KEY", properties["LECTURE_API_KEY"]
+        buildConfigField "String", "LECTURE_SG_API_KEY", properties["LECTURE_SG_API_KEY"]
     }
 
     buildTypes {

@@ -1,12 +1,24 @@
 package com.learning.myudemy.domain.repository
 
+import android.util.Log
 import com.learning.myudemy.R
+import com.learning.myudemy.data.remote.LectureApiService
 import com.learning.myudemy.domain.model.Lecture
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
-class LectureRepository @Inject constructor() {
+class LectureRepository @Inject constructor(
+    private val lectureInterface:LectureApiService
+) {
+
+    suspend fun refreshCache()  = withContext(Dispatchers.IO) {
+        val list = lectureInterface.getLectures2()
+        Timber.tag("lecture").d("${list.results[0]}")
+    }
 
     suspend fun getLectureList(id:Int): List<Lecture>{
         val list  = mutableListOf<Lecture>()
