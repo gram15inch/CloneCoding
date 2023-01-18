@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,7 @@ fun bindRmdList(view: RecyclerView,list:List<UiRecommend>?){
 }
 
 @AndroidEntryPoint
-class RecommendationFragment : LifecycleFragment() {
+class RecommendationFragment : Fragment() {
 
     var _binding : FragmentRecommendationBinding? =null
     private val binding get() = _binding!!

@@ -18,7 +18,8 @@ data class UiLecture(
     val gradeScore: Float,
     val gradeCount: Int,
     val lecturePrice: Int,
-    val lectureThumbnail: Int,
+    val lectureThumbnailRes: Int,
+    val lectureThumbnailUrl: String,
     val isBestSeller: Boolean
 )
 

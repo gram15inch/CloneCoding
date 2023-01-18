@@ -13,6 +13,7 @@ object UiConverter {
         lecture.gradeCount,
         lecture.lecturePrice,
         lecture.lectureThumbnailRes,
+        lecture.lectureThumbnailUrl,
         lecture.isBestSeller
     )
     fun toUiMyLeaningLecture(lecture: Lecture) = UiMyLeaningLecture(

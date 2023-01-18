@@ -16,7 +16,6 @@ interface LectureApiService {
 */
     @GET("v1/course/list")
     suspend fun getLectures(
-        @Query("Page") page: Int = 1,
         @Query("SG_APIM") sg: String = BuildConfig.LECTURE_SG_API_KEY,
         @Query("ServiceKey") key: String = UdemyApplication.LECTURE_API_KEY,
         @Query("page") page2: Int = 1,

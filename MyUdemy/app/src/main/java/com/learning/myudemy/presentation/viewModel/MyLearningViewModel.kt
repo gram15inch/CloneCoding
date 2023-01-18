@@ -10,7 +10,6 @@ import com.learning.myudemy.presentation.model.UiMyLeaningLecture
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,7 +23,6 @@ class MyLearningViewModel @Inject constructor(private val lectureRepository: Lec
         viewModelScope.launch {
             lectureRepository.lectureList.collect { list ->
                 list.map {
-                    Timber.tag("lecture").d("$it")
                     UiConverter.toUiMyLeaningLecture(it)
                 }.run { _lecturesFlow.emit(this) }
             }
@@ -33,10 +31,10 @@ class MyLearningViewModel @Inject constructor(private val lectureRepository: Lec
 
     init {
         //lectureUpdate()
-        testRefresh()
+        viewModelRefresh()
     }
 
-    private fun testRefresh() {
+    private fun viewModelRefresh() {
         viewModelScope.launch {
             lectureRepository.refreshCache()
         }

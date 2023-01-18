@@ -1,9 +1,6 @@
 package com.learning.myudemy.presentation.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.learning.myudemy.R
 import com.learning.myudemy.domain.model.Lecture
 import com.learning.myudemy.domain.repository.CategoryRepository
@@ -11,7 +8,10 @@ import com.learning.myudemy.domain.repository.LectureRepository
 import com.learning.myudemy.presentation.converter.UiConverter
 import com.learning.myudemy.presentation.model.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -23,12 +23,42 @@ class RecommendationViewModel @Inject constructor(
     ViewModel() {
     private val _recommendList = MutableLiveData<List<UiRecommend>>()
     val recommendList: LiveData<List<UiRecommend>> get() = _recommendList
+    private val _recommendFlow = MutableStateFlow<List<UiRecommend>>(emptyList())
+    val recommendLive get() = _recommendFlow.asLiveData()
+
 
     private var uiRecommendIdx = 0
 
     init {
-        //refreshRecommendList()
-        getUiRecommendWithLectures()
+        viewModelRefresh()
+        viewModelScope.launch {
+            lectureRepository.lectureList.collect { list ->
+                Timber.tag("lecture").d("size: ${list.size}")
+                list.map {
+                    UiConverter.toUiLecture(it)
+                }.run {
+                    if(this.isNotEmpty())
+                        listOf(
+                            UiRecommend(
+                                RecommendTag.Lecture,
+                                uiRecommendIdx++,
+                                title = list[0].lectureName,
+                                lectures = this
+                            )
+                        )
+                    else
+                        emptyList()
+                }.apply {
+                    _recommendFlow.emit(this)
+                }
+            }
+        }
+    }
+
+    private fun viewModelRefresh() {
+        viewModelScope.launch {
+            lectureRepository.refreshCache()
+        }
     }
 
     private fun refreshRecommendList() {
