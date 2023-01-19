@@ -4,8 +4,10 @@ import com.learning.myudemy.R
 import com.learning.myudemy.data.remote.LectureApiService
 import com.learning.myudemy.domain.converter.DomainConverter
 import com.learning.myudemy.domain.model.Lecture
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -14,6 +16,12 @@ class LectureRepository @Inject constructor(
 ) {
     private val _lectureList = MutableStateFlow<List<Lecture>>(emptyList())
     val lectureList get() = _lectureList
+
+    init {
+        CoroutineScope(Dispatchers.IO).launch{
+            refreshCache()
+        }
+    }
 
     suspend fun refreshCache() = withContext(Dispatchers.IO) {
         lectureInterface
