@@ -23,24 +23,9 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun test1(){
-
-
-         CoroutineScope(Dispatchers.IO).launch {
-                repeat(10){
-                    Thread.sleep(1000)
-                    println("k1 $it")
-                }
-
-            }
-          CoroutineScope(Dispatchers.IO).launch {
-              repeat(10){
-                  Thread.sleep(1000)
-                  println("k2 $it")
-              }
-            }
-
-        Thread.sleep(5000)
-
+    fun extractNumberInString(){
+        val str = "ABAA01"
+        val num = str.replace("[^0-9]".toRegex(), "")
+        assertEquals("01",num)
     }
 }

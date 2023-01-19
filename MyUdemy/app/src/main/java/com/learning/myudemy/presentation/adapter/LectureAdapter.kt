@@ -2,16 +2,13 @@ package com.learning.myudemy.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.learning.myudemy.R
 import com.learning.myudemy.databinding.HolderLectureBinding
 import com.learning.myudemy.presentation.model.UiLecture
-import timber.log.Timber
 import java.text.NumberFormat
 import java.util.*
 

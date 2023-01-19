@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.ui.VideoPlayActivity">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.learning.myudemy.presentation.viewModel.VideoPlayViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -49,7 +55,8 @@
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
                             android:maxLines="1"
-                            android:text="Learn Android Application Development"
+                            android:Text="@{viewModel.lectureTitle}"
+                            tools:text="Learn Android Application Development"
                             android:textColor="@color/colorPrimary"
                             android:textSize="20sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +68,8 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:maxLines="1"
-                            android:text="ProgramMe Programming"
+                            android:text="@{viewModel.lectureSubTitle}"
+                            tools:text="ProgramMe Programming"
                             android:textColor="@color/colorSecondary"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -131,26 +139,20 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="20dp"
-                                android:text="섹션1 - JavaBasics"
+                                android:text="@{viewModel.lectureSection}"
+                                tools:text="섹션1 - JavaBasics"
                                 android:textColor="@color/black"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
                         </FrameLayout>
 
-                        <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/>
-  <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/>
-  <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/>
-  <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/> <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/> <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/> <include layout="@layout/layout_list_video_lecture"/>
-                        <include layout="@layout/layout_list_video_lecture"/>
-
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/video_lecture_list_ryc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:videoList="@{viewModel.lecturesLive}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            />
 
 
                     </LinearLayout>

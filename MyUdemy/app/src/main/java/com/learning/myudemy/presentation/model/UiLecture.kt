@@ -1,6 +1,6 @@
-package com.learning.myudemy.domain.model
+package com.learning.myudemy.presentation.model
 
-data class Lecture(
+data class UiLecture(
     val lectureId: Int,
     val lectureName: String,
     val Instructor: String,
@@ -13,6 +13,4 @@ data class Lecture(
     val lectureThumbnailRes: Int,
     val lectureThumbnailUrl: String,
     val isBestSeller: Boolean
-){
-
-}
+)

@@ -5,27 +5,63 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.ActivityVideoPlayBinding
+import com.learning.myudemy.domain.converter.DomainConverter.id
+import com.learning.myudemy.presentation.adapter.VideoPlayAdapter
 import com.learning.myudemy.presentation.base.LifecycleActivity
-import com.learning.myudemy.presentation.viewModel.VideoPlayActivityViewModel
+import com.learning.myudemy.presentation.model.UiLecture
+import com.learning.myudemy.presentation.model.UiMyLeaningLecture
+import com.learning.myudemy.presentation.viewModel.VideoPlayViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
-
+@BindingAdapter("videoList")
+fun bindVideoList(view: RecyclerView, list:List<UiLecture>?){
+    if(list!= null)
+        Timber.tag("intent").d("${list}")
+    (view.adapter as VideoPlayAdapter).submitList(list?: emptyList())
+}
+@AndroidEntryPoint
 class VideoPlayActivity : LifecycleActivity() {
     lateinit var binding: ActivityVideoPlayBinding
-    private val viewModel : VideoPlayActivityViewModel by viewModels()
+    private val viewModel : VideoPlayViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent = intent // 전달할 데이터를 받을 Intent
-        viewModel.url = intent.getIntExtra("videoUrl",0)
+        intent.getStringExtra("classfyCode").apply {
+            Timber.tag("classCode").d("code: $this")
+            viewModel.refreshUiMyLeaningLecture(toId(this?:""))
+        }
+
         viewModel.refreshVideoState()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_video_play)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.videoLectureListRyc.adapter = VideoPlayAdapter(itemClickListener)
     }
 
+    private val itemClickListener: (UiLecture) -> Unit = {
+        viewModel.refreshVideoState()
+    }
+
+    private fun toId(code:String):Int{
+        return when(code){
+            "ACRC01"->{1}
+            "ACRC02"->{2}
+            "AIIA01"->{3}
+            else->1
+        }
+    }
     override fun onRestart() {
         super.onRestart()
         if(viewModel.checkBackgroundPlay())
@@ -38,7 +74,7 @@ class VideoPlayActivity : LifecycleActivity() {
     }
     public override fun onResume() {
         super.onResume()
-        binding.videoPlayMain.player?.play()
+        //binding.videoPlayMain.player?.play() //todo 다시 재생
     }
 
     public override fun onPause() {
@@ -66,7 +102,7 @@ class VideoPlayActivity : LifecycleActivity() {
             .also { exoPlayer ->
                 binding.videoPlayMain.player = exoPlayer
 
-                val mediaItem = MediaItem.fromUri(getString(viewModel.url))
+                val mediaItem = MediaItem.fromUri(getString(R.string.media_url_mp4)) //todo 받아온 값으로 교체
                 exoPlayer.setMediaItem(mediaItem)
 
                 val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
@@ -105,6 +141,6 @@ class VideoPlayActivity : LifecycleActivity() {
 
     private fun backgroundVideo(bool: Boolean){
         val text = if(bool) "start" else "stop"
-        Toast.makeText(this,"background $text!!",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"background $text!!",Toast.LENGTH_SHORT).show()
     }
 }

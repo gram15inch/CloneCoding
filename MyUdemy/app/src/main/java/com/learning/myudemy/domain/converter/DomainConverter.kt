@@ -9,9 +9,12 @@ object DomainConverter {
         id++,
         lecture.name,
         lecture.teachers,
+        lecture.number,
+        lecture.classfyName,
         3.5f,
         50,
         100000,
+        lecture.videoTime,
         0,
         lecture.media.image.raw,
         false

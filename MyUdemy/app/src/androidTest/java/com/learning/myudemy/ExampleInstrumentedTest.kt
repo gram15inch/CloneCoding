@@ -22,7 +22,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val a = RecommendationViewModel(LectureRepository(), CategoryRepository())
-        assertEquals(a.recommendList.value!!.size, 1)
+
     }
 }

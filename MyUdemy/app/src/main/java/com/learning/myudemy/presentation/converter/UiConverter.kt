@@ -9,9 +9,12 @@ object UiConverter {
         lecture.lectureId,
         lecture.lectureName,
         lecture.Instructor,
+        lecture.classfyCode,
+        lecture.classfyName,
         lecture.gradeScore,
         lecture.gradeCount,
         lecture.lecturePrice,
+        lecture.videoTime,
         lecture.lectureThumbnailRes,
         lecture.lectureThumbnailUrl,
         lecture.isBestSeller
@@ -22,6 +25,8 @@ object UiConverter {
         lecture.Instructor,
         lecture.lectureThumbnailRes,
         lecture.lectureThumbnailUrl,
+        lecture.classfyCode,
+        lecture.classfyName,
         false
     )
 }

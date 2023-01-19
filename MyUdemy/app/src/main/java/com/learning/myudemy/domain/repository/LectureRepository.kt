@@ -4,36 +4,14 @@ import com.learning.myudemy.R
 import com.learning.myudemy.data.remote.LectureApiService
 import com.learning.myudemy.domain.converter.DomainConverter
 import com.learning.myudemy.domain.model.Lecture
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LectureRepository @Inject constructor(
     private val lectureInterface: LectureApiService
 ) {
-    private val _lectureList = MutableStateFlow<List<Lecture>>(emptyList())
-    val lectureList get() = _lectureList
-
-    init {
-        CoroutineScope(Dispatchers.IO).launch{
-            refreshCache()
-        }
-    }
-
-    suspend fun refreshCache() = withContext(Dispatchers.IO) {
-        lectureInterface
-            .getLectures()
-            .remoteLectures
-            .map {
-                DomainConverter.toLecture(it)
-            }.run {
-                _lectureList.emit(this)
-            }
-    }
-
+    // todo 로컬 데이터로 캐시
 
     suspend fun getLectureListWithRes(id: Int): List<Lecture> {
         val list = mutableListOf<Lecture>()
@@ -63,9 +41,12 @@ class LectureRepository @Inject constructor(
                 0,
                 "☕ 블랙커피 Vanilla JS Lv1. 문벅스 카페 메뉴 앱 만들기Vanilla Javascript로 만들어보는 상태관리가 가능한 카페 메뉴",
                 "Maker Jun",
+                "",
+                "",
                 4.8F,
                 360,
                 109000,
+                "",
                 R.drawable.tn_web1,
                 "",
                 true
@@ -74,9 +55,12 @@ class LectureRepository @Inject constructor(
                 1,
                 "【한글자막】 100일 코딩 챌린지 - Web Development 부트캠프100일 안에 여러분을 웹 개발자로 만들어 드리겠습니다.",
                 "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller, Manuel Lorenz",
+                "",
+                "",
                 4.7F,
                 181,
                 109000,
+                "",
                 R.drawable.tn_web2,
                 "",
                 false
@@ -85,9 +69,12 @@ class LectureRepository @Inject constructor(
                 2,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_web3,
                 "",
                 false
@@ -96,9 +83,12 @@ class LectureRepository @Inject constructor(
                 3,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_web4,
                 "",
                 false
@@ -107,9 +97,12 @@ class LectureRepository @Inject constructor(
                 4,
                 "The Complete 2020 Fullstack Web Developer CourseLearn HTML5, CSS3, JavaScript, Python, Wagtail CMS, PHP",
                 "Kalob Taulien",
+                "",
+                "",
                 4.8F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_web5,
                 "",
                 false
@@ -125,9 +118,12 @@ class LectureRepository @Inject constructor(
                 0,
                 "☕ 블랙커피 Vanilla JS Lv1. 문벅스 카페 메뉴 앱 만들기Vanilla Javascript로 만들어보는 상태관리가 가능한 카페 메뉴",
                 "Maker Jun",
+                "",
+                "",
                 4.8F,
                 360,
                 109000,
+                "",
                 R.drawable.tn_react1,
                 "",
                 true
@@ -136,9 +132,12 @@ class LectureRepository @Inject constructor(
                 1,
                 "【한글자막】 100일 코딩 챌린지 - Web Development 부트캠프100일 안에 여러분을 웹 개발자로 만들어 드리겠습니다.",
                 "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller, Manuel Lorenz",
+                "",
+                "",
                 4.7F,
                 181,
                 109000,
+                "",
                 R.drawable.tn_react2,
                 "",
                 false
@@ -147,9 +146,12 @@ class LectureRepository @Inject constructor(
                 2,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_react3,
                 "",
                 false
@@ -158,9 +160,12 @@ class LectureRepository @Inject constructor(
                 3,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_react4,
                 "",
                 false
@@ -169,9 +174,12 @@ class LectureRepository @Inject constructor(
                 4,
                 "The Complete 2020 Fullstack Web Developer CourseLearn HTML5, CSS3, JavaScript, Python, Wagtail CMS, PHP",
                 "Kalob Taulien",
+                "",
+                "",
                 4.8F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_react5,
                 "",
                 false
@@ -187,9 +195,12 @@ class LectureRepository @Inject constructor(
                 0,
                 "☕ 블랙커피 Vanilla JS Lv1. 문벅스 카페 메뉴 앱 만들기Vanilla Javascript로 만들어보는 상태관리가 가능한 카페 메뉴",
                 "Maker Jun",
+                "",
+                "",
                 4.8F,
                 360,
                 109000,
+                "",
                 R.drawable.tn_python1,
                 "",
                 true
@@ -198,9 +209,12 @@ class LectureRepository @Inject constructor(
                 1,
                 "【한글자막】 100일 코딩 챌린지 - Web Development 부트캠프100일 안에 여러분을 웹 개발자로 만들어 드리겠습니다.",
                 "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller, Manuel Lorenz",
+                "",
+                "",
                 4.7F,
                 181,
                 109000,
+                "",
                 R.drawable.tn_python2,
                 "",
                 false
@@ -209,9 +223,12 @@ class LectureRepository @Inject constructor(
                 2,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_python3,
                 "",
                 false
@@ -220,9 +237,12 @@ class LectureRepository @Inject constructor(
                 3,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_python4,
                 "",
                 false
@@ -238,9 +258,12 @@ class LectureRepository @Inject constructor(
                 0,
                 "☕ 블랙커피 Vanilla JS Lv1. 문벅스 카페 메뉴 앱 만들기Vanilla Javascript로 만들어보는 상태관리가 가능한 카페 메뉴",
                 "Maker Jun",
+                "",
+                "",
                 4.8F,
                 360,
                 109000,
+                "",
                 R.drawable.tn_python1,
                 "",
                 true
@@ -249,9 +272,12 @@ class LectureRepository @Inject constructor(
                 1,
                 "【한글자막】 100일 코딩 챌린지 - Web Development 부트캠프100일 안에 여러분을 웹 개발자로 만들어 드리겠습니다.",
                 "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller, Manuel Lorenz",
+                "",
+                "",
                 4.7F,
                 181,
                 109000,
+                "",
                 R.drawable.tn_python2,
                 "",
                 false
@@ -260,9 +286,12 @@ class LectureRepository @Inject constructor(
                 2,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_python3,
                 "",
                 false
@@ -271,9 +300,12 @@ class LectureRepository @Inject constructor(
                 3,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_python4,
                 "",
                 false
@@ -282,9 +314,12 @@ class LectureRepository @Inject constructor(
                 4,
                 "☕ 블랙커피 Vanilla JS Lv1. 문벅스 카페 메뉴 앱 만들기Vanilla Javascript로 만들어보는 상태관리가 가능한 카페 메뉴",
                 "Maker Jun",
+                "",
+                "",
                 4.8F,
                 360,
                 109000,
+                "",
                 R.drawable.tn_react1,
                 "",
                 true
@@ -293,9 +328,12 @@ class LectureRepository @Inject constructor(
                 5,
                 "【한글자막】 100일 코딩 챌린지 - Web Development 부트캠프100일 안에 여러분을 웹 개발자로 만들어 드리겠습니다.",
                 "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller, Manuel Lorenz",
+                "",
+                "",
                 4.7F,
                 181,
                 109000,
+                "",
                 R.drawable.tn_react2,
                 "",
                 false
@@ -304,9 +342,12 @@ class LectureRepository @Inject constructor(
                 6,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_react3,
                 "",
                 false
@@ -315,9 +356,12 @@ class LectureRepository @Inject constructor(
                 7,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_react4,
                 "",
                 false
@@ -326,9 +370,12 @@ class LectureRepository @Inject constructor(
                 8,
                 "【한글자막】 100일 코딩 챌린지 - Web Development 부트캠프100일 안에 여러분을 웹 개발자로 만들어 드리겠습니다.",
                 "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller, Manuel Lorenz",
+                "",
+                "",
                 4.7F,
                 181,
                 109000,
+                "",
                 R.drawable.tn_web1,
                 "",
                 false
@@ -337,9 +384,12 @@ class LectureRepository @Inject constructor(
                 9,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_web2,
                 "",
                 false
@@ -348,9 +398,12 @@ class LectureRepository @Inject constructor(
                 10,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_web3,
                 "",
                 false
@@ -359,9 +412,12 @@ class LectureRepository @Inject constructor(
                 11,
                 "Become a Certified HTML, CSS, JavaScript Web DeveloperComplete coverage of HTML, CSS",
                 "Kalob Taulien",
+                "",
+                "",
                 4.5F,
                 871,
                 129000,
+                "",
                 R.drawable.tn_web4,
                 "",
                 false
@@ -370,9 +426,12 @@ class LectureRepository @Inject constructor(
                 12,
                 "【한글자막】 The Web Developer 부트캠프 2023전세계 25만명이 선택한 유데미 베스트셀러! ",
                 "Maker Jun",
+                "",
+                "",
                 4.5F,
                 360,
                 129000,
+                "",
                 R.drawable.tn_web5,
                 "",
                 false

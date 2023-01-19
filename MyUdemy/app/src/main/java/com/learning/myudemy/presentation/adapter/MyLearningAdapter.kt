@@ -11,36 +11,46 @@ import com.learning.myudemy.databinding.LayoutListItemMyLearningBinding
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
 
 
-class MyLearningAdapter : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.LectureDetailHolder>(DiffCallback) {
+class MyLearningAdapter(private val onItemClicked: (UiMyLeaningLecture) -> Unit) :
+    ListAdapter<UiMyLeaningLecture, MyLearningAdapter.LectureDetailHolder>(DiffCallback) {
 
-
-   inner class LectureDetailHolder(var binding: LayoutListItemMyLearningBinding) :
+    inner class LectureDetailHolder(var binding: LayoutListItemMyLearningBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(lecture: UiMyLeaningLecture,position: Int) {
+        fun bind(lecture: UiMyLeaningLecture, position: Int) {
             binding.apply {
-                if (lecture.imgRes!=0)
-                    lectureListImage.setImageResource(lecture.imgRes)
-                else
-                    Glide.with(binding.root)
-                        .load(lecture.imgUrl)
-                        .into(lectureListImage)
+                setImage(lecture)
                 lectureListTitle.text = lecture.title
                 lectureListSubTitle.text = lecture.subTitle
                 lectureCkBox.isChecked = lecture.isChecked
                 lectureCkBox.setOnClickListener {
                     currentList[position].isChecked = (it as CheckBox).isChecked
                 }
+                lectureListContainer.setOnClickListener {
+                    onItemClicked(lecture)
+                }
             }
         }
-       fun deleteList(lecture: UiMyLeaningLecture){
-           binding.lectureListItemStartTxt.setOnClickListener {
-               val oldList= mutableListOf<UiMyLeaningLecture>()
-               oldList.addAll(currentList)
-               oldList.remove(lecture)
-               this@MyLearningAdapter.submitList(oldList)
-           }
 
-       }
+        private fun setImage(lecture: UiMyLeaningLecture) {
+            binding.apply {
+                if (lecture.imgRes != 0)
+                    lectureListImage.setImageResource(lecture.imgRes)
+                else
+                    Glide.with(binding.root)
+                        .load(lecture.imgUrl)
+                        .into(lectureListImage)
+            }
+        }
+
+        fun setDeleteListener(lecture: UiMyLeaningLecture) {
+            binding.lectureListItemStartTxt.setOnClickListener {
+                val oldList = mutableListOf<UiMyLeaningLecture>()
+                oldList.addAll(currentList)
+                oldList.remove(lecture)
+                this@MyLearningAdapter.submitList(oldList)
+            }
+
+        }
     }
 
     override fun onCreateViewHolder(
@@ -58,8 +68,8 @@ class MyLearningAdapter : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.Lect
 
     override fun onBindViewHolder(holder: LectureDetailHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current,position)
-        holder.deleteList(current)
+        holder.bind(current, position)
+        holder.setDeleteListener(current)
     }
 
     override fun getItemCount(): Int {
@@ -68,10 +78,17 @@ class MyLearningAdapter : ListAdapter<UiMyLeaningLecture, MyLearningAdapter.Lect
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<UiMyLeaningLecture>() {
-            override fun areItemsTheSame(oldItem: UiMyLeaningLecture, newItem: UiMyLeaningLecture): Boolean {
+            override fun areItemsTheSame(
+                oldItem: UiMyLeaningLecture,
+                newItem: UiMyLeaningLecture
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
-            override fun areContentsTheSame(oldItem: UiMyLeaningLecture, newItem: UiMyLeaningLecture): Boolean {
+
+            override fun areContentsTheSame(
+                oldItem: UiMyLeaningLecture,
+                newItem: UiMyLeaningLecture
+            ): Boolean {
                 return oldItem == newItem
             }
         }
