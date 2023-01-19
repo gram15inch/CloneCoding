@@ -9,9 +9,8 @@ import com.learning.myudemy.presentation.converter.UiConverter
 import com.learning.myudemy.presentation.model.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -21,47 +20,38 @@ class RecommendationViewModel @Inject constructor(
     private val categoryRepository: CategoryRepository
 ) :
     ViewModel() {
-    private val _recommendList = MutableLiveData<List<UiRecommend>>()
-    val recommendList: LiveData<List<UiRecommend>> get() = _recommendList
-    private val _recommendFlow = MutableStateFlow<List<UiRecommend>>(emptyList())
-    val recommendLive get() = _recommendFlow.asLiveData()
-
+    private val _recommendList = MutableStateFlow<List<UiRecommend>>(emptyList())
+    val recommendList: LiveData<List<UiRecommend>> get() = _recommendList.asLiveData()
 
     private var uiRecommendIdx = 0
 
     init {
-        viewModelRefresh()
+        refreshUiRecommendWithCategory()
+    }
+
+    private fun refreshUiRecommendWithCategory() {
         viewModelScope.launch {
-            lectureRepository.lectureList.collect { list ->
-                Timber.tag("lecture").d("size: ${list.size}")
-                list.map {
-                    UiConverter.toUiLecture(it)
-                }.run {
-                    if(this.isNotEmpty())
-                        listOf(
-                            UiRecommend(
-                                RecommendTag.Lecture,
-                                uiRecommendIdx++,
-                                title = list[0].lectureName,
-                                lectures = this
-                            )
-                        )
-                    else
-                        emptyList()
-                }.apply {
-                    _recommendFlow.emit(this)
+            categoryRepository
+                .getCategoryList()
+                .map { category ->
+                    UiRecommend(
+                        RecommendTag.Lecture,
+                        uiRecommendIdx++,
+                        title = category.name,
+                        lectures = lectureRepository
+                            .getLectureListWithApi(category.id)
+                            .map { UiConverter.toUiLecture(it) }
+                    )
+                }.also {
+                    _recommendList.emit(it)
                 }
-            }
         }
     }
 
-    private fun viewModelRefresh() {
-        viewModelScope.launch {
-            lectureRepository.refreshCache()
-        }
-    }
 
-    private fun refreshRecommendList() {
+
+    /* 안씀 */
+    private fun refreshRecommendListForMultiView() {
         viewModelScope.launch {
             val list = mutableListOf<UiRecommend>()
             list.add(
@@ -89,28 +79,6 @@ class RecommendationViewModel @Inject constructor(
 
         }
     }
-
-    private fun getUiRecommendWithLectures() {
-
-        viewModelScope.launch {
-            categoryRepository
-                .getCategoryList()
-                .map { category ->
-                    UiRecommend(
-                        RecommendTag.Lecture,
-                        uiRecommendIdx++,
-                        title = category.name,
-                        lectures = lectureRepository
-                            .getLectureList(category.id)
-                            .map { UiConverter.toUiLecture(it) }
-                    )
-                }.also {
-                    _recommendList.value = it
-                }
-        }
-        return
-    }
-
     private fun getWebList(): List<Lecture> {
         return listOf(
             Lecture(

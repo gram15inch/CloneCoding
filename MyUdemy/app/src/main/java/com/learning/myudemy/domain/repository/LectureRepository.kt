@@ -10,11 +10,12 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LectureRepository @Inject constructor(
-    private val lectureInterface:LectureApiService
+    private val lectureInterface: LectureApiService
 ) {
     private val _lectureList = MutableStateFlow<List<Lecture>>(emptyList())
-    val lectureList get() =_lectureList
-    suspend fun refreshCache()  = withContext(Dispatchers.IO) {
+    val lectureList get() = _lectureList
+
+    suspend fun refreshCache() = withContext(Dispatchers.IO) {
         lectureInterface
             .getLectures()
             .remoteLectures
@@ -25,20 +26,30 @@ class LectureRepository @Inject constructor(
             }
     }
 
-    suspend fun getLectureList(id:Int): List<Lecture>{
-        val list  = mutableListOf<Lecture>()
-       withContext(Dispatchers.IO){
-            when(id){
-                1-> list.addAll(getWebList())
-                2-> list.addAll(getReactList())
-                3->list.addAll(getPythonList())
-                4->list.addAll(getMyLearningList())
-                else->{}
+
+    suspend fun getLectureListWithRes(id: Int): List<Lecture> {
+        val list = mutableListOf<Lecture>()
+        withContext(Dispatchers.IO) {
+            when (id) {
+                1 -> list.addAll(getWebList())
+                2 -> list.addAll(getReactList())
+                3 -> list.addAll(getPythonList())
+                4 -> list.addAll(getMyLearningList())
+                else -> {}
             }
-       }
+        }
         return list
     }
-    private fun getWebList():List<Lecture>{
+
+    suspend fun getLectureListWithApi(id: Int): List<Lecture> {
+        return lectureInterface.getLectures(page=id)
+            .remoteLectures
+            .map {
+                DomainConverter.toLecture(it)
+            }
+    }
+
+    private fun getWebList(): List<Lecture> {
         return listOf(
             Lecture(
                 0,
@@ -99,7 +110,8 @@ class LectureRepository @Inject constructor(
 
             )
     }
-    private fun getReactList():List<Lecture>{
+
+    private fun getReactList(): List<Lecture> {
         return listOf(
             Lecture(
                 0,
@@ -160,7 +172,8 @@ class LectureRepository @Inject constructor(
 
             )
     }
-    private fun getPythonList():List<Lecture>{
+
+    private fun getPythonList(): List<Lecture> {
         return listOf(
             Lecture(
                 0,
@@ -210,7 +223,8 @@ class LectureRepository @Inject constructor(
 
         )
     }
-    private fun getMyLearningList():List<Lecture>{
+
+    private fun getMyLearningList(): List<Lecture> {
         return listOf(
             Lecture(
                 0,

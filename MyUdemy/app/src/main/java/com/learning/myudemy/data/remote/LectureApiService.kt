@@ -18,6 +18,6 @@ interface LectureApiService {
     suspend fun getLectures(
         @Query("SG_APIM") sg: String = BuildConfig.LECTURE_SG_API_KEY,
         @Query("ServiceKey") key: String = UdemyApplication.LECTURE_API_KEY,
-        @Query("page") page2: Int = 1,
+        @Query("page") page: Int = 1,
     ): LectureResponse
 }

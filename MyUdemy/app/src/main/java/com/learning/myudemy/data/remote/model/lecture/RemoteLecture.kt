@@ -64,7 +64,7 @@ data class RemoteLecture(
     @Json(name = "middle_classfy")
     val middleClassfy: String,
     @Json(name = "middle_classfy_name")
-    val middleClassfyName: String,
+    val middleClassfyName: String?,
     @Json(name = "mobile_available")
     val mobileAvailable: Boolean,
     @Json(name = "modified")

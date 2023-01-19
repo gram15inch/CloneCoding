@@ -15,7 +15,7 @@ class RecommendAdapter : ListAdapter<UiRecommend, RecommendAdapter.RecommendHold
         RecyclerView.ViewHolder(binding.root) {
         fun bind(uiRmd: UiRecommend) {
             if (uiRmd.tag == RecommendTag.Lecture) binding.apply {
-                lectureTitle = "${uiRmd.title} 추천강의"
+                lectureTitle = "${uiRmd.title} 강의"
                 lectureList = uiRmd.lectures
             }
         }

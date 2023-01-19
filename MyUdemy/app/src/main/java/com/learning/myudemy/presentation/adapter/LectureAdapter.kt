@@ -23,24 +23,32 @@ class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lecture: UiLecture) {
             binding.apply {
-                Timber.tag("adapter").d("${lecture.lectureThumbnailUrl}")
+                setImage(lecture)
+                setName(lecture)
+                lecturePrice.text = moneyFormat.format(lecture.lecturePrice)
+                lectureInstructor.text = lecture.Instructor
+            }
+        }
+        private fun setImage(lecture: UiLecture){
+            binding.apply {
                 if (lecture.lectureThumbnailRes != 0)
                     lectureImage.setImageResource(lecture.lectureThumbnailRes)
                 else
                     Glide.with(lectureImage.context)
                         .load(lecture.lectureThumbnailUrl)
                         .into(lectureImage)
-
-                lectureImage.setImageResource(lecture.lectureThumbnailRes)
-                lectureName.text =
-                    if (lecture.lectureId != 0)
-                        "${lecture.lectureName} ${lecture.lectureId}"
-                    else
-                        lecture.lectureName
-                lecturePrice.text = moneyFormat.format(lecture.lecturePrice)
-                lectureInstructor.text = lecture.Instructor
             }
         }
+        private fun setName(lecture: UiLecture){
+            binding.apply {
+                lectureName.text =
+                    if (lecture.lectureId%10 != 0)
+                        "${lecture.lectureName} ${lecture.lectureId%10}"
+                    else
+                        lecture.lectureName
+            }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LectureHolder {
@@ -51,11 +59,7 @@ class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
 
     override fun onBindViewHolder(holder: LectureHolder, position: Int) {
         val current = getItem(position)
-        /*  if (position!=0)
-          if(position>=this.currentList.size-1) {
-              holder.binding.holderContainer.visibility = View.GONE
-              holder.binding.holderLast.visibility = View.VISIBLE
-          }*/
+
         holder.itemView.setOnClickListener {
             onItemClicked(current)
         }
@@ -65,6 +69,7 @@ class LectureAdapter(private val onItemClicked: (UiLecture) -> Unit) :
     override fun getItemCount(): Int {
         return this.currentList.size
     }
+
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<UiLecture>() {

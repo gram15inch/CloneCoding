@@ -40,14 +40,15 @@ class MyLearningViewModel @Inject constructor(private val lectureRepository: Lec
         }
     }
 
+
+
     private fun lectureUpdate() {
         viewModelScope.launch {
             lectures.value =
-                lectureRepository.getLectureList(4)
+                lectureRepository.getLectureListWithRes(4)
                     .map { UiConverter.toUiMyLeaningLecture(it) }
         }
     }
-
     fun updateLectures(list: List<UiMyLeaningLecture>) {
         lectures.value = list
     }

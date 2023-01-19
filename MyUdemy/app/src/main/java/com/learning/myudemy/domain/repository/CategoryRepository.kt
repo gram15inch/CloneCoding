@@ -18,15 +18,15 @@ class CategoryRepository @Inject constructor() {
         return listOf(
             Category(
                 1,
-                "웹"
+                "문화"
             ),
             Category(
                 2,
-                "파이썬"
+                "문화2"
             ),
             Category(
                 3,
-                "리엑트"
+                "기타"
             )
         )
     }
