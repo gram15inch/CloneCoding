@@ -8,12 +8,11 @@ import retrofit2.http.Query
 
 
 interface LectureApiService {
-    /* @GET("courseList")
+   /* @GET("courseList")
      suspend fun getLectures(
          @Query("ServiceKey") key: String = UdemyApplication.LECTURE_API_KEY,
          @Query("Page") page: Int=1,
-     ): LectureResponse
-*/
+     ): LectureResponse */
     @GET("v1/course/list")
     suspend fun getLectures(
         @Query("SG_APIM") sg: String = BuildConfig.LECTURE_SG_API_KEY,
