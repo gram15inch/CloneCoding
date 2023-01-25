@@ -47,6 +47,17 @@ class MyLearningViewModel @Inject constructor(
                 }
         }
     }
+/*
+    private fun refreshUiMyLeaningLecturedWithCategoryHandleError() {
+        viewModelScope.launch {
+            lectureRepository
+                .getLectureListWithApiErrorHandle(1).map {
+                    UiConverter.toUiMyLeaningLecture(it)
+                }.apply {
+                    _lecturesFlow.emit(this)
+                }
+        }
+    }*/
 
 
     /* 리소스 에서 가져올때 사용 */

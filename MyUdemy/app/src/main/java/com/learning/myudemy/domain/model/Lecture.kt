@@ -13,6 +13,4 @@ data class Lecture(
     val lectureThumbnailRes: Int,
     val lectureThumbnailUrl: String,
     val isBestSeller: Boolean
-){
-
-}
+)

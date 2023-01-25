@@ -22,6 +22,17 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
+    //hilt test
+        // For Robolectric tests.
+    testImplementation 'com.google.dagger:hilt-android-testing:2.44'
+        // ...with Kotlin.
+    kaptTest 'com.google.dagger:hilt-android-compiler:2.44'
+        // For instrumented tests.
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+        // ...with Kotlin.
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
+    testImplementation "io.mockk:mockk:1.10.5"
+
     // junit5
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.0"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.0"
@@ -80,4 +91,7 @@ dependencies {
 
     //gms
     implementation "com.google.android.gms:play-services-auth:20.4.0"
+
+    //coroutine
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
 }

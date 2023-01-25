@@ -1,17 +1,25 @@
 package com.learning.myudemy
 
+import com.learning.myudemy.data.remote.LectureApiService
 import com.learning.myudemy.domain.model.Category
+import com.learning.myudemy.domain.model.test.Orange
+import com.learning.myudemy.domain.model.test.Red
+import com.learning.myudemy.domain.model.test.TestSealColor
+import com.learning.myudemy.domain.model.test.Yellow
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.*
 
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import javax.inject.Inject
 
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
@@ -28,4 +36,16 @@ class ExampleUnitTest {
         val num = str.replace("[^0-9]".toRegex(), "")
         assertEquals("01",num)
     }
+
+    @Test
+    fun sealTest(){
+        val r : TestSealColor = Red(0,0,0)
+        when(r){
+           is Red ->  { assertEquals(r,Red(0,0,0)) }
+           is Orange  -> {assertEquals(r,Orange(0,0,0)) }
+           is Yellow -> { assertEquals(r,Yellow(0,0,0))}
+        }
+    }
+
+
 }
