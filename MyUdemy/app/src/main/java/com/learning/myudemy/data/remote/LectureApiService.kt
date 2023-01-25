@@ -21,12 +21,12 @@ interface LectureApiService {
         @Query("page") page: Int = 1,
     ): LectureResponse
 
- /*   @GET("v1/course/list")
+    @GET("v1/course/list")
     suspend fun getLecturesWithResponse(
         @Query("SG_APIM") sg: String = BuildConfig.LECTURE_SG_API_KEY,
         @Query("ServiceKey") key: String = UdemyApplication.LECTURE_API_KEY,
         @Query("page") page: Int = 1,
-    ): Response<LectureResponse>*/
+    ): Response<LectureResponse>
 
 
 }

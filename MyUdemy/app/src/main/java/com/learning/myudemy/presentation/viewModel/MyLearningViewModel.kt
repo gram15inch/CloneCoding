@@ -7,14 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.learning.myudemy.domain.repository.CategoryRepository
 import com.learning.myudemy.domain.repository.LectureRepository
 import com.learning.myudemy.presentation.converter.UiConverter
-import com.learning.myudemy.presentation.model.RecommendTag
-import com.learning.myudemy.presentation.model.UiLecture
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
-import com.learning.myudemy.presentation.model.UiRecommend
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,7 +26,8 @@ class MyLearningViewModel @Inject constructor(
     val lecturesLive get() = _lecturesFlow.asLiveData()
 
     init {
-        refreshUiMyLeaningLecturedWithCategory()
+       // refreshUiMyLeaningLecturedWithCategory()
+        refreshUiMyLeaningLecturedWithErrorHandle()
     }
 
     private fun refreshUiMyLeaningLecturedWithCategory() {
@@ -47,8 +44,7 @@ class MyLearningViewModel @Inject constructor(
                 }
         }
     }
-/*
-    private fun refreshUiMyLeaningLecturedWithCategoryHandleError() {
+    private fun refreshUiMyLeaningLecturedWithErrorHandle() {
         viewModelScope.launch {
             lectureRepository
                 .getLectureListWithApiErrorHandle(1).map {
@@ -57,7 +53,7 @@ class MyLearningViewModel @Inject constructor(
                     _lecturesFlow.emit(this)
                 }
         }
-    }*/
+    }
 
 
     /* 리소스 에서 가져올때 사용 */

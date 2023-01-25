@@ -16,29 +16,36 @@ class LectureRepository @Inject constructor(
     // todo 로컬 데이터로 캐시
 
     suspend fun getLectureListWithApi(id: Int): List<Lecture> {
-        return lectureInterface.getLectures(page=id)
+        return lectureInterface.getLectures(page = id)
             .remoteLectures
             .map {
                 DomainConverter.toLecture(it)
             }
     }
-/*    suspend fun getLectureListWithApiErrorHandle(id: Int): List<Lecture> {
-          return lectureInterface.getLecturesWithResponse(page=id).run {
-              Timber.tag("ErrorHandle").d("call ErrorHandle")
-                if(this.isSuccessful)
-                    this.body()?.remoteLectures?.map {
-                        Timber.tag("ErrorHandle").d("is successful")
-                        DomainConverter.toLecture(it)
-                    }?: emptyList()
-              Timber.tag("ErrorHandle").d("emptyList: fail")
-              emptyList()
 
+    suspend fun getLectureListWithApiErrorHandle(id: Int): List<Lecture> {
+        return lectureInterface.getLecturesWithResponse(page = id).run {
+            if (this.isSuccessful) {
+                Timber.tag("errorHandle").d("is successful true")
+                Timber.tag("errorHandle").d("code: ${this.code()}")
+                Timber.tag("errorHandle").d("errorBody: ${this.errorBody()}")
+                Timber.tag("errorHandle").d("message: ${this.message()}")
+                Timber.tag("errorHandle").d("headers: ${this.headers()}")
+                this.body()?.remoteLectures?.map {
+                    DomainConverter.toLecture(it)
+                } ?: emptyList()
+            } else {
+                Timber.tag("errorHandle").d("is successful false")
+                Timber.tag("errorHandle").d("errorBody: ${this.errorBody()}")
+                Timber.tag("errorHandle").d("code: ${this.code()}")
+                Timber.tag("errorHandle").d("message: ${this.message()}")
+                Timber.tag("errorHandle").d("headers: ${this.headers()}")
+                emptyList()
             }
+        }
 
 
-
-    }*/
-
+    }
 
 
     suspend fun getLectureListWithRes(id: Int): List<Lecture> {
@@ -131,6 +138,7 @@ class LectureRepository @Inject constructor(
 
             )
     }
+
     private fun getReactList(): List<Lecture> {
         return listOf(
             Lecture(
@@ -207,6 +215,7 @@ class LectureRepository @Inject constructor(
 
             )
     }
+
     private fun getPythonList(): List<Lecture> {
         return listOf(
             Lecture(
@@ -269,6 +278,7 @@ class LectureRepository @Inject constructor(
 
         )
     }
+
     private fun getMyLearningList(): List<Lecture> {
         return listOf(
             Lecture(
