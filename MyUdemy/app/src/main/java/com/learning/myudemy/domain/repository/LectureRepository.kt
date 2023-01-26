@@ -7,6 +7,9 @@ import com.learning.myudemy.domain.converter.DomainConverter
 import com.learning.myudemy.domain.model.Lecture
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -16,6 +19,7 @@ class LectureRepository @Inject constructor(
     // todo 로컬 데이터로 캐시
 
     suspend fun getLectureListWithApi(id: Int): List<Lecture> {
+
         return lectureInterface.getLectures(page = id)
             .remoteLectures
             .map {
@@ -23,7 +27,7 @@ class LectureRepository @Inject constructor(
             }
     }
 
-    suspend fun getLectureListWithApiErrorHandle(id: Int): List<Lecture> {
+    suspend fun getLectureListWithApiResponse(id: Int): List<Lecture> {
         return lectureInterface.getLecturesWithResponse(page = id).run {
             if (this.isSuccessful) {
                 Timber.tag("errorHandle").d("is successful true")
@@ -43,10 +47,7 @@ class LectureRepository @Inject constructor(
                 emptyList()
             }
         }
-
-
     }
-
 
     suspend fun getLectureListWithRes(id: Int): List<Lecture> {
         val list = mutableListOf<Lecture>()

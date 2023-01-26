@@ -20,6 +20,7 @@ class AccountFragment : LifecycleFragment() {
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)

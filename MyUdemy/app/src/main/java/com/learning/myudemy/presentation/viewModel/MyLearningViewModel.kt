@@ -17,17 +17,15 @@ import javax.inject.Inject
 class MyLearningViewModel @Inject constructor(
     private val lectureRepository: LectureRepository,
     private val categoryRepository: CategoryRepository
-) :
-    ViewModel() {
-    @Deprecated("리소스 에서 가져올때 사용")
-    val lectureListRes = MutableLiveData<List<UiMyLeaningLecture>>()
+) : ViewModel() {
 
     private val _lecturesFlow = MutableStateFlow<List<UiMyLeaningLecture>>(emptyList())
     val lecturesLive get() = _lecturesFlow.asLiveData()
 
     init {
-       // refreshUiMyLeaningLecturedWithCategory()
+        // refreshUiMyLeaningLecturedWithCategory()
         refreshUiMyLeaningLecturedWithErrorHandle()
+
     }
 
     private fun refreshUiMyLeaningLecturedWithCategory() {
@@ -44,19 +42,30 @@ class MyLearningViewModel @Inject constructor(
                 }
         }
     }
+
     private fun refreshUiMyLeaningLecturedWithErrorHandle() {
         viewModelScope.launch {
+
             lectureRepository
-                .getLectureListWithApiErrorHandle(1).map {
+                .getLectureListWithApiResponse(1)
+                .map {
                     UiConverter.toUiMyLeaningLecture(it)
                 }.apply {
                     _lecturesFlow.emit(this)
                 }
         }
     }
+    private fun refreshUiMyLeaningLecturedWithCall() {
+        viewModelScope.launch {
+            //lectureRepository.getLectureListWithApiCall(1)
+        }
+    }
 
 
     /* 리소스 에서 가져올때 사용 */
+    @Deprecated("리소스 에서 가져올때 사용")
+    val lectureListRes = MutableLiveData<List<UiMyLeaningLecture>>()
+
     private fun lectureUpdate() {
         viewModelScope.launch {
             lectureListRes.value =

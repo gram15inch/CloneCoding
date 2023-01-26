@@ -29,7 +29,7 @@ object LectureModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(moshi:Moshi): Retrofit {
+    fun provideRetrofit(moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(
                 MoshiConverterFactory.create(moshi)
