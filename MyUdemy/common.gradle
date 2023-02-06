@@ -14,7 +14,6 @@ android {
     compileSdk parent.ext.compileSdkVersion
 
     defaultConfig {
-        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
         applicationId "com.learning.myudemy"
         minSdk parent.ext.minSdkVersion
         targetSdk parent.ext.targetSdkVersion
@@ -22,6 +21,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments runnerBuilder: 'de.mannodermaus.junit5.AndroidJUnit5Builder'
 
         javaCompileOptions.annotationProcessorOptions.arguments['dagger.hilt.disableModulesHaveInstallInCheck'] = 'true'
 

@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.learning.myudemy.BR
 import com.learning.myudemy.R
 import com.learning.myudemy.databinding.FragmentMyLearningBinding
 import com.learning.myudemy.presentation.adapter.MyLearningAdapter
@@ -38,7 +39,13 @@ class MyLearningFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_my_learning, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_my_learning,
+                container,
+                false
+            )
+
         return binding.root
     }
 
@@ -54,10 +61,10 @@ class MyLearningFragment : Fragment() {
         _binding = null
     }
 
-   private val itemClickListener: (UiMyLeaningLecture) -> Unit = {
-       val intent = Intent(context, VideoPlayActivity::class.java)
-       intent.putExtra("classfyCode",it.classfyCode)
-       startActivity(intent)
+    private val itemClickListener: (UiMyLeaningLecture) -> Unit = {
+        val intent = Intent(context, VideoPlayActivity::class.java)
+        intent.putExtra("classfyCode", it.classfyCode)
+        startActivity(intent)
     }
 
     private fun startVideoActivity() {

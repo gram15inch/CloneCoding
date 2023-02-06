@@ -65,11 +65,6 @@ dependencies {
     // Timber : Log util
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
-    def exoplayer_version = '2.18.2'
-
-    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
-    implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"
-    implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
 
     // ****** network ******
 
@@ -96,4 +91,11 @@ dependencies {
 
     //coroutine
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
+
+    def exoplayer_version = '2.18.2'
+
+    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
+
 }

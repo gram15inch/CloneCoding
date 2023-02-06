@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.learning.myudemy.domain.repository.CategoryRepository
 import com.learning.myudemy.domain.repository.LectureRepository
+import com.learning.myudemy.presentation.base.ErrorHandleViewModel
 import com.learning.myudemy.presentation.converter.UiConverter
 import com.learning.myudemy.presentation.model.UiMyLeaningLecture
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,7 @@ import javax.inject.Inject
 class MyLearningViewModel @Inject constructor(
     private val lectureRepository: LectureRepository,
     private val categoryRepository: CategoryRepository
-) : ViewModel() {
+) : ErrorHandleViewModel() {
 
     private val _lecturesFlow = MutableStateFlow<List<UiMyLeaningLecture>>(emptyList())
     val lecturesLive get() = _lecturesFlow.asLiveData()
@@ -44,8 +45,7 @@ class MyLearningViewModel @Inject constructor(
     }
 
     private fun refreshUiMyLeaningLecturedWithErrorHandle() {
-        viewModelScope.launch {
-
+        viewModelScope.launch(exceptionHandler) {
             lectureRepository
                 .getLectureListWithApiResponse(1)
                 .map {
